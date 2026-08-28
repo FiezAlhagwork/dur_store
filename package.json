@@ -5,13 +5,26 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:check": "next build",
     "start": "next start",
     "lint": "eslint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^7.8.0",
+    "@hookform/resolvers": "^5.9.1",
+    "@tanstack/react-query": "^5.101.4",
+    "accept-language": "^3.0.20",
+    "axios": "^1.19.0",
+    "i18next": "^26.3.6",
+    "i18next-resources-to-backend": "^1.2.3",
+    "lucide-react": "^1.28.0",
+    "motion": "^12.43.0",
     "next": "16.2.12",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "react-hook-form": "^7.85.0",
+    "react-i18next": "^17.0.11",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

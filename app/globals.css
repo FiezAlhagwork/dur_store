@@ -2,25 +2,76 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: hwb(0 9% 91%);
+  --second: #ede8d5;
+  --primary: #1d0634;
+  --accent: #2e2a5c;
+  --hero-accent-soft: #c9c6de;
+  --hero-surface: #ffffff;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hero-second {
+  background-image: url("/ChatGPT Image Jul 30, 2026, 12_50_09 PM.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-primary: var(--primary);
+  --color-second: var(--second);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-thmanyah-sans), Arial, Helvetica, sans-serif;
+  --font-serif: var(--font-thmanyah-serif-display), Georgia, serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-thmanyah-sans), Arial, Helvetica, sans-serif;
+}
+
+@keyframes auth-step-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@layer components {
+  .site-container {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  /* The auth steps replace each other in place inside one card
+     (components/auth/AuthFlow.tsx), so the entering step lifts in to make the
+     change readable instead of snapping. */
+  .auth-step-in {
+    animation: auth-step-in 320ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .auth-step-in {
+    animation: none;
+  }
 }

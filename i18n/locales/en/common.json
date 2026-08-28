@@ -1,0 +1,510 @@
+{
+  "nav": {
+    "about": "About",
+    "products": "Products",
+    "contact": "Contact",
+    "home": "Home",
+    "services": "Services",
+    "features": "Features",
+    "pricing": "Pricing",
+    "languageToggle": "العربية",
+    "contactUs": "Contact Us",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "about": {
+    "eyebrow": "About Us",
+    "title": "The Dur Story",
+    "description": "DUR is a luxury jewelry brand offering gold and diamond pieces with contemporary designs that blend fine craftsmanship, quiet luxury, and personal identity. We believe jewelry isn't just an accessory — it's an extension of a woman's taste, memory, and presence.",
+    "imageAlt": "Dur jewelry workshop",
+    "stats": {
+      "products": "Products",
+      "customers": "Happy customers",
+      "years": "Years of experience"
+    }
+  },
+  "whyUs": {
+    "eyebrow": "Why Dur",
+    "title": "What Sets Dur Apart",
+    "designs": {
+      "title": "Bespoke Designs",
+      "description": "Pieces designed or customized to match each client's taste and personality."
+    },
+    "luxury": {
+      "title": "Quiet Luxury",
+      "description": "Soft, understated elegance — never over-the-top."
+    },
+    "materials": {
+      "title": "Premium Materials",
+      "description": "High-quality gold and diamonds, carefully selected."
+    },
+    "limited": {
+      "title": "Limited Collections",
+      "description": "Non-mass production that gives every piece a sense of exclusivity."
+    },
+    "digital": {
+      "title": "A Refined Digital Experience",
+      "description": "Easy, secure, and luxurious shopping — from selection to packaging."
+    }
+  },
+  "categories": {
+    "eyebrow": "Browse",
+    "title": "Shop by Category",
+    "subtitle": "Find the piece that matches your style, from rings to earrings."
+  },
+  "contact": {
+    "eyebrow": "Get in Touch",
+    "title": "Contact Us",
+    "subtitle": "Have a question or a custom piece in mind? Send us a message and we'll reply on WhatsApp.",
+    "info": {
+      "phone": "Phone",
+      "email": "Email",
+      "address": "Address",
+      "follow": "Follow us"
+    },
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Your full name",
+      "email": "Email",
+      "emailPlaceholder": "you@example.com",
+      "phone": "Phone",
+      "phonePlaceholder": "+963 9xx xxx xxx",
+      "subject": "Subject",
+      "subjectPlaceholder": "How can we help?",
+      "message": "Message",
+      "messagePlaceholder": "Write your message here...",
+      "submit": "Send via WhatsApp",
+      "errors": {
+        "name": "Name must be at least 2 characters",
+        "email": "Please enter a valid email address",
+        "phone": "Please enter a valid phone number",
+        "subject": "Subject must be at least 2 characters",
+        "message": "Message must be at least 10 characters"
+      }
+    }
+  },
+  "products": {
+    "eyebrow": "Our Collection",
+    "title": "Products",
+    "subtitle": "Discover a wide range of carefully designed jewelry for every occasion.",
+    "filters": {
+      "all": "All"
+    },
+    "empty": "No products found in this category.",
+    "outOfStock": "Out of Stock",
+    "originalPrice": "Original price",
+    "discountBadge": "{{percent}} off",
+    "orderWhatsapp": "Order via WhatsApp",
+    "karat": "{{karat}}K Gold",
+    "previousImage": "الصورة السابقة",
+    "nextImage": "الصورة التالية",
+    "filtersUnavailable": "Category filters are unavailable right now — showing all products.",
+    "loadMore": "Show more",
+    "error": {
+      "description": "Couldn't load the products. Please try again.",
+      "retry": "Try again"
+    }
+  },
+  "productDetail": {
+    "backToProducts": "Back to Products",
+    "goldWeight": "Gold Weight",
+    "gemstone": "Gemstone",
+    "relatedTitle": "You May Also Like",
+    "notFound": "Product not found.",
+    "gemstones": {
+      "diamond": "Diamond"
+    }
+  },
+  "footer": {
+    "tagline": "Timeless gold and diamond jewelry, designed with quiet luxury in mind.",
+    "quickLinks": "Quick Links",
+    "getInTouch": "Get in Touch",
+    "privacy": "Privacy Policy",
+    "terms": "Terms & Conditions",
+    "rights": "All rights reserved."
+  },
+  "common": {
+    "loading": "Loading...",
+    "close": "Close",
+    "pagination": {
+      "label": "Pagination",
+      "previous": "Previous page",
+      "next": "Next page",
+      "status": "Page {{current}} of {{total}}"
+    }
+  },
+  "admin": {
+    "nav": {
+      "dashboard": "Overview",
+      "categories": "Categories",
+      "products": "Products",
+      "site": "Store",
+      "account": "My account"
+    },
+    "sidebar": {
+      "expand": "Expand sidebar",
+      "collapse": "Collapse sidebar"
+    },
+    "drawer": {
+      "label": "Admin sections",
+      "open": "Open menu",
+      "close": "Close menu"
+    },
+    "guard": {
+      "checking": "Checking your access...",
+      "errorTitle": "Something went wrong",
+      "errorDescription": "We couldn't confirm your access to the dashboard. Please try again.",
+      "errorRetry": "Try again"
+    },
+    "settings": {
+      "account": {
+        "title": "Account",
+        "noName": "No name set",
+        "signInMethod": "Sign-in method",
+        "memberSince": "Member since",
+        "methods": {
+          "google": "Google",
+          "emailCode": "Email code"
+        },
+        "roles": {
+          "admin": "Admin",
+          "manager": "Manager",
+          "customer": "Customer"
+        }
+      },
+      "avatar": {
+        "change": "Change photo",
+        "remove": "Remove",
+        "error": "Couldn't update your photo. Please try again."
+      },
+      "profile": {
+        "firstName": "First name",
+        "lastName": "Last name",
+        "lastNameHint": "Optional.",
+        "save": "Save changes",
+        "saved": "Saved",
+        "error": "Couldn't save your name. Please try again.",
+        "errors": {
+          "firstName": "Enter your first name (at least 2 characters)."
+        }
+      },
+      "sessions": {
+        "title": "Signed-in devices",
+        "description": "Everywhere this account is currently signed in. End a session to sign that device out.",
+        "thisDevice": "This device",
+        "unknownDevice": "Unknown device",
+        "revoke": "End session",
+        "revokeTitle": "End session",
+        "revokeWarning": "\"{{device}}\" will be signed out straight away and will need to sign in again.",
+        "revokeConfirm": "End session",
+        "error": "Couldn't end this session. Please try again.",
+        "loadError": "Couldn't load your signed-in devices.",
+        "retry": "Try again"
+      },
+      "errors": {
+        "reverification": "For your security, this change needs a fresh sign-in. Please sign out and sign in again, then retry."
+      }
+    },
+    "categories": {
+      "add": "Add category",
+      "empty": "No categories yet. Add your first one to get started.",
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "actions": {
+        "edit": "Edit category",
+        "delete": "Delete category"
+      },
+      "error": {
+        "title": "Couldn't load categories",
+        "description": "The server didn't respond as expected. Please try again.",
+        "retry": "Try again"
+      },
+      "form": {
+        "createTitle": "Add category",
+        "editTitle": "Edit category",
+        "nameAr": "Name (Arabic)",
+        "nameEn": "Name (English)",
+        "slug": "Slug",
+        "slugHint": "Lowercase English letters, numbers and hyphens only — used in the URL.",
+        "image": "Image",
+        "imageUpload": "Upload image",
+        "isActive": "Visible to customers",
+        "cancel": "Cancel",
+        "save": "Save changes",
+        "create": "Add category",
+        "errors": {
+          "nameAr": "Enter a name in Arabic (at least 2 characters).",
+          "nameEn": "Enter a name in English (at least 2 characters).",
+          "slug": "Lowercase English letters, numbers and hyphens only, e.g. gold-rings.",
+          "imageSize": "The image must be 4MB or smaller.",
+          "validation": "Please fix the highlighted fields.",
+          "generic": "Something went wrong. Please try again."
+        }
+      },
+      "delete": {
+        "title": "Delete category",
+        "warning": "Deleting \"{{name}}\" also permanently deletes every product inside it. This cannot be undone.",
+        "confirm": "Delete category",
+        "error": "Couldn't delete this category. Please try again."
+      }
+    },
+    "products": {
+      "add": "Add product",
+      "empty": "No products yet. Add your first one to get started.",
+      "emptyFiltered": "No products match these filters.",
+      "clearFilters": "Clear filters",
+      "stock_one": "{{count}} in stock",
+      "stock_other": "{{count}} in stock",
+      "filters": {
+        "search": "Search products",
+        "searchPlaceholder": "Search by name...",
+        "category": "Filter by category",
+        "allCategories": "All categories",
+        "status": "Filter by status",
+        "allStatuses": "All statuses"
+      },
+      "actions": {
+        "edit": "Edit product",
+        "delete": "Delete product",
+        "toggle": "Toggle visibility",
+        "discount": "Set discount"
+      },
+      "discount": {
+        "title": "Discount",
+        "apply": "Apply discount",
+        "remove": "Remove discount",
+        "error": "Couldn't update the discount. Please try again."
+      },
+      "error": {
+        "title": "Couldn't load products",
+        "description": "The server didn't respond as expected. Please try again.",
+        "retry": "Try again"
+      },
+      "images": {
+        "current": "Current images",
+        "currentHint": "Removing an image takes effect immediately — cancelling the form won't bring it back.",
+        "primary": "Primary image",
+        "add": "Images",
+        "addMore": "Add more images",
+        "choose": "Choose images",
+        "removePending": "Remove this image",
+        "deleteTitle": "Delete image",
+        "deleteWarning": "This image will be deleted from the server right away. Cancelling the form afterwards will not restore it.",
+        "deleteConfirm": "Delete image",
+        "deleteError": "Couldn't delete this image. Please try again."
+      },
+      "form": {
+        "category": "Category",
+        "categoryPlaceholder": "Select a category",
+        "slug": "Slug",
+        "nameAr": "Name (Arabic)",
+        "nameEn": "Name (English)",
+        "descriptionAr": "Description (Arabic)",
+        "descriptionEn": "Description (English)",
+        "price": "Price",
+        "hasDiscount": "This product is on discount",
+        "discountValue": "Discount value",
+        "discountValueHint": "A percentage off, 0–100.",
+        "finalPrice": "Price after discount",
+        "stock": "Stock",
+        "karat": "Karat",
+        "goldWeight": "Gold weight (g)",
+        "gemstoneType": "Gemstone",
+        "gemstoneCarat": "Gemstone carat",
+        "isActive": "Visible to customers",
+        "create": "Add product",
+        "errors": {
+          "category": "Choose a category.",
+          "slug": "Lowercase English letters, numbers and hyphens only, e.g. eternity-gold-ring.",
+          "nameAr": "Enter a name in Arabic (at least 2 characters).",
+          "nameEn": "Enter a name in English (at least 2 characters).",
+          "price": "Enter a price greater than zero.",
+          "discountValue": "The discount can't be negative.",
+          "discountMax": "The discount is a percentage, so it can't be over 100.",
+          "discountRequired": "Enter a discount greater than zero, or turn the discount off.",
+          "stock": "Stock can't be negative.",
+          "goldWeight": "Gold weight can't be negative.",
+          "gemstoneCarat": "Gemstone carat can't be negative."
+        }
+      },
+      "delete": {
+        "title": "Delete product",
+        "warning": "Deleting \"{{name}}\" also removes its images permanently. This cannot be undone.",
+        "confirm": "Delete product",
+        "error": "Couldn't delete this product. Please try again."
+      }
+    },
+    "overview": {
+      "stats": {
+        "total": "All products",
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "byCategory": {
+        "title": "Products by category",
+        "empty": "No categories yet."
+      },
+      "lowStock": {
+        "title": "Running low",
+        "empty": "Nothing is running low.",
+        "remaining_one": "{{count}} left",
+        "remaining_other": "{{count}} left"
+      },
+      "latest": {
+        "title": "Recently added",
+        "empty": "No products yet."
+      },
+      "error": {
+        "title": "Couldn't load the dashboard",
+        "description": "The server didn't respond as expected. Please try again.",
+        "retry": "Try again",
+        "forbiddenTitle": "You don't have access to this page",
+        "forbiddenDescription": "The dashboard statistics are limited to admin accounts. Signing in again won't change that."
+      }
+    },
+    "site": {
+      "save": "Save",
+      "saved": "Saved",
+      "errors": {
+        "required": "This field can't be empty.",
+        "url": "Enter a full URL, starting with https://",
+        "path": "Enter a path inside the site, starting with /",
+        "email": "Enter a valid email address.",
+        "whatsapp": "Digits only — no +, spaces or dashes.",
+        "validation": "Please fix the highlighted fields.",
+        "generic": "Something went wrong. Please try again."
+      },
+      "loadError": {
+        "title": "Couldn't load the current settings",
+        "description": "The fields below show the built-in defaults, not what is live. Saving now would overwrite the live values.",
+        "retry": "Try again"
+      },
+      "media": {
+        "title": "Hero video",
+        "description": "What visitors see first on the home page.",
+        "video": "Video",
+        "videoHint": "mp4, webm or mov — up to 50MB. Uploads as soon as you choose a file.",
+        "poster": "Poster",
+        "posterHint": "Shown while the video loads — up to 4MB.",
+        "noPoster": "No poster yet",
+        "chooseVideo": "Choose a video",
+        "choosePoster": "Choose a poster",
+        "uploading": "Uploading",
+        "uploadingPercent": "Uploading… {{percent}}%",
+        "processing": "Processing on the server…",
+        "tooLarge": "This file is too large. The limit is {{max}}MB.",
+        "videoType": "Only mp4, webm and mov videos are accepted.",
+        "posterType": "Choose an image file.",
+        "sessionExpiredDuringUpload": "Your session expired during this slow upload. Please try again, ideally on a faster connection."
+      },
+      "hero": {
+        "title": "Hero text",
+        "description": "The headline, the line under it, and the two buttons.",
+        "titleLine1Ar": "First line (Arabic)",
+        "titleLine1En": "First line (English)",
+        "titleLine2Ar": "Second line (Arabic)",
+        "titleLine2En": "Second line (English)",
+        "descriptionAr": "Description (Arabic)",
+        "descriptionEn": "Description (English)",
+        "primaryButton": "Primary button",
+        "secondaryButton": "Secondary button",
+        "labelAr": "Label (Arabic)",
+        "labelEn": "Label (English)",
+        "url": "Link",
+        "urlHint": "A path inside the site, e.g. /products"
+      },
+      "contact": {
+        "title": "Contact details",
+        "phone": "Phone (as displayed)",
+        "phoneHint": "How it appears on the page.",
+        "phoneHref": "Phone (as dialled)",
+        "phoneHrefHint": "The tel: link, with no spaces.",
+        "email": "Email",
+        "addressAr": "Address (Arabic)",
+        "addressEn": "Address (English)"
+      },
+      "social": {
+        "title": "Social links",
+        "instagram": "Instagram",
+        "facebook": "Facebook",
+        "whatsappNote": "The WhatsApp link is built from the number in the Brand section below."
+      },
+      "brand": {
+        "title": "Brand",
+        "description": "Used to build product links and the WhatsApp order button.",
+        "siteUrl": "Site URL",
+        "siteUrlHint": "Used for links shared outside the site.",
+        "whatsapp": "WhatsApp number",
+        "whatsappHint": "Digits only, with the country code — e.g. 963999000000"
+      }
+    }
+  },
+  "auth": {
+    "aside": {
+      "title": "Every piece carries a story of its own",
+      "subtitle": "Sign in to follow your orders and keep the pieces you love in one place."
+    },
+    "login": {
+      "title": "Welcome back",
+      "subtitle": "Sign in to continue to your account."
+    },
+    "register": {
+      "title": "Create your account",
+      "subtitle": "Join us to start shopping."
+    },
+    "method": {
+      "google": "Continue with Google",
+      "email": "Continue with email",
+      "or": "or"
+    },
+    "back": {
+      "toMethods": "Other sign-in options"
+    },
+    "switch": {
+      "toRegisterPrompt": "New to DUR?",
+      "toRegisterAction": "Create an account",
+      "toLoginPrompt": "Already have an account?",
+      "toLoginAction": "Sign in"
+    },
+    "name": {
+      "firstLabel": "First name",
+      "firstPlaceholder": "e.g. Fiez",
+      "firstError": "Please enter your first name (at least 2 characters)",
+      "lastLabel": "Last name",
+      "lastPlaceholder": "e.g. Alhag",
+      "lastError": "Please enter your last name (at least 2 characters)"
+    },
+    "email": {
+      "label": "Email",
+      "placeholder": "you@example.com",
+      "submit": "Send code",
+      "error": "Please enter a valid email address",
+      "change": "Use a different email"
+    },
+    "code": {
+      "label": "Verification code",
+      "placeholder": "6-digit code",
+      "submit": "Verify",
+      "sentTo": "We sent a 6-digit code to {{email}}",
+      "resend": "Resend code",
+      "resendIn": "Resend in {{seconds}}s",
+      "wrongCode": "Incorrect code, please try again.",
+      "expired": "This code has expired. Request a new one.",
+      "error": "Enter the 6-digit code"
+    },
+    "logout": "Sign out",
+    "errors": {
+      "generic": "Something went wrong. Please try again."
+    },
+    "redirect": {
+      "loading": "Checking your account...",
+      "error": {
+        "title": "Something went wrong",
+        "description": "We couldn't verify your account. Please try again.",
+        "retry": "Try again"
+      }
+    }
+  }
+}

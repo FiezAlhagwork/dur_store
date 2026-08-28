@@ -1,15 +1,39 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
+import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const thmanyahSans = localFont({
+  src: [
+    { path: "../public/fonts/thmanyahsans-Regular.woff2", weight: "400", style: "normal" },
+    { path: "../public/fonts/thmanyahsans-Medium.woff2", weight: "500", style: "normal" },
+    { path: "../public/fonts/thmanyahsans-Bold.woff2", weight: "700", style: "normal" },
+    { path: "../public/fonts/thmanyahsans-Black.woff2", weight: "900", style: "normal" },
+  ],
+  variable: "--font-thmanyah-sans",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const thmanyahSerifDisplay = localFont({
+  src: [
+    { path: "../public/fonts/thmanyahserifdisplay-Regular.woff2", weight: "400", style: "normal" },
+    { path: "../public/fonts/thmanyahserifdisplay-Medium.woff2", weight: "500", style: "normal" },
+    { path: "../public/fonts/thmanyahserifdisplay-Bold.woff2", weight: "700", style: "normal" },
+    { path: "../public/fonts/thmanyahserifdisplay-Black.woff2", weight: "900", style: "normal" },
+  ],
+  variable: "--font-thmanyah-serif-display",
+  display: "swap",
+});
+
+const thmanyahSerifText = localFont({
+  src: [
+    { path: "../public/fonts/thmanyahseriftext-Regular.woff2", weight: "400", style: "normal" },
+    { path: "../public/fonts/thmanyahseriftext-Medium.woff2", weight: "500", style: "normal" },
+    { path: "../public/fonts/thmanyahseriftext-Bold.woff2", weight: "700", style: "normal" },
+    { path: "../public/fonts/thmanyahseriftext-Black.woff2", weight: "900", style: "normal" },
+  ],
+  variable: "--font-thmanyah-serif-text",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -23,11 +47,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
-    </html>
+    // `signInUrl`/`signUpUrl` point Clerk at our own pages. Without them,
+    // any redirect Clerk initiates itself falls back to its hosted Account
+    // Portal, which drops the user out of our custom bilingual UI. Clerk
+    // takes a single static string here and this layout sits above the
+    // [locale] segment, so these use the default locale (see i18n/config.ts);
+    // it is only a fallback — the auth flow itself always builds
+    // locale-correct URLs from the active language.
+    <ClerkProvider signInUrl="/ar/login" signUpUrl="/ar/register">
+      <html
+        lang="ar"
+        suppressHydrationWarning
+        className={`h-full antialiased ${thmanyahSans.variable} ${thmanyahSerifDisplay.variable} ${thmanyahSerifText.variable}`}
+      >
+        <body className="min-h-full flex flex-col">{children}</body>
+      </html>
+    </ClerkProvider>
   );
 }
+
+
+
+
