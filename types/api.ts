@@ -1,6 +1,7 @@
 /**
  * Field-level validation messages, keyed by field name. Laravel only sends
  * these on a `422`.
+ * fiez alhag
  */
 export type ApiValidationErrors = Record<string, string[]>;
 
