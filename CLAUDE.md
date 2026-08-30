@@ -81,6 +81,41 @@ Do **not** work around this by changing this app's dev port to match the allowli
 
 `hooks/useCurrentUser.ts` logs `azp` and `sub` in development for exactly this reason. If `/api/user` starts failing again after a deploy or a port change, check that line first.
 
+## Production deploy: `next start -H` must be `localhost`, never an IP — solved failure mode
+
+**Symptom:** every page (not just admin ones) returns Internal Server Error, with the server log repeating:
+
+```
+Failed to proxy https://localhost:3000/ Error: write EPROTO ... wrong version number
+```
+
+**Cause — an origin string comparison, not a network problem.** Two independent pieces of machinery each build the app's own URL, and both ignore the `Host` header:
+
+- **Clerk** rewrites *every* request to itself as an absolute URL, in order to attach its auth headers — a plain `NextResponse.next()` becomes `x-middleware-rewrite: <absolute req.url>` (`decorateRequest`, `@clerk/nextjs/dist/esm/server/utils.js`). That URL uses the host **`localhost`**.
+- **Next** computes its own origin as `` `${protocol}://${opts.hostname || 'localhost'}:${port}` `` (`resolve-routes.js`), where `opts.hostname` is whatever `next start -H` was given. `protocol` comes from `X-Forwarded-Proto`.
+
+Next then relativizes the rewrite against that origin. Same origin → internal, fine. **Different origin → Next treats it as an external destination and proxies to it.** With `-H 127.0.0.1` the comparison is `https://localhost:3000` vs `https://127.0.0.1:3000` — the same machine, different *text* — so Next opens a TLS connection to this very server, which speaks plain HTTP. Hence `EPROTO`.
+
+**The fix is `-H localhost` in `ecosystem.config.cjs`** (both sides then agree on the string). The file is tracked in this repo precisely so this cannot silently drift again.
+
+**`NODE_OPTIONS=--dns-result-order=ipv4first` is load-bearing because of this**, and must not be removed: `-H localhost` goes through DNS, `localhost` often resolves to `::1` first, and binding to IPv6 loopback alone makes the app unreachable from nginx, whose upstream is `server 127.0.0.1:3000`. Verified on the host: without the flag `-H localhost` binds `[::1]:3000`; with it, `127.0.0.1:3000`.
+
+**nginx is not involved and was ruled out** — `proxy_set_header Host $host` and `X-Forwarded-Proto $scheme` are both correctly set. Do not "fix" this in nginx.
+
+### Testing this class of bug
+
+An isolated copy on another port reproduces it **only if the request carries what nginx really sends**. A plain `curl http://127.0.0.1:3001/` passes even while production is broken, because without `X-Forwarded-Proto: https` the protocol resolves to `http` and no TLS is attempted. That false negative is what originally led to the passthrough-proxy workaround below. Always test with:
+
+```bash
+curl -s -o /dev/null -w "%{http_code}\n" \
+  -H "Host: durjewels.com" -H "X-Forwarded-Proto: https" \
+  http://127.0.0.1:<port>/ar
+```
+
+### Historical note — the passthrough `proxy.ts` overlay (removed)
+
+`deploy.sh` used to copy `/var/www/dur-overlays/dur-store-proxy.ts` over `proxy.ts` on every deploy, replacing `clerkMiddleware()` with a no-op passthrough. It was a workaround for the hang/failure described above, added before the cause was known. Its side effect was that `clerkMiddleware()` never ran in production at all, so `auth()` in `app/[locale]/(admin)/layout.tsx` always threw *"Clerk can't detect usage of clerkMiddleware()"* and `/dashboard` was permanently broken. **Do not reintroduce it.** `proxy.ts` in git has always been correct.
+
 ## Bot sign-up protection is currently OFF — turn it back on before production
 
 **Current state:** *Bot sign-up protection* is **disabled** in the Clerk Dashboard (*Protect → Rules*). It was turned off to unblock local development and **must be re-enabled before the app goes to production** — sign-up is otherwise unprotected against automated account creation.
