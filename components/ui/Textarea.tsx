@@ -4,8 +4,11 @@ import { forwardRef, useId } from "react";
 import { TextareaProps } from "@/types";
 
 const TEXTAREA_SIZES = {
-  md: "px-4 py-2.5 text-sm",
-  sm: "px-3.5 py-2 text-sm",
+  // See the matching comment in Input.tsx: text-base below `sm:` keeps a
+  // focused textarea at/above the 16px iOS Safari zoom-on-focus threshold,
+  // sm:text-sm restores the original size from 640px up.
+  md: "px-4 py-2.5 text-base sm:text-sm",
+  sm: "px-3.5 py-2 text-base sm:text-sm",
 } as const;
 
 const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(

@@ -5,8 +5,13 @@ import { InputProps } from "@/types";
 
 const INPUT_SIZES = {
   lg: "px-4 py-3.5 text-lg",
-  md: "px-4 py-2.5 text-sm",
-  sm: "px-3.5 py-2 text-sm",
+  // `text-base` (16px) below the `sm:` breakpoint, not `text-sm` (14px):
+  // iOS Safari (and Chrome) auto-zooms the page when a focused input's
+  // computed font-size is under 16px. `sm:text-sm` restores the original
+  // compact size from 640px up, where that zoom-on-focus behavior doesn't
+  // happen anyway — so desktop/tablet are visually unchanged.
+  md: "px-4 py-2.5 text-base sm:text-sm",
+  sm: "px-3.5 py-2 text-base sm:text-sm",
 } as const;
 
 const Input = forwardRef<HTMLInputElement, InputProps>(function Input(

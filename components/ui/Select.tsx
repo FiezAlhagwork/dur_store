@@ -6,8 +6,11 @@ import { SelectProps } from "@/types";
 
 const SELECT_SIZES = {
   lg: "px-4 py-3.5 text-lg",
-  md: "px-4 py-2.5 text-sm",
-  sm: "px-3.5 py-2 text-sm",
+  // See the matching comment in Input.tsx: text-base below `sm:` keeps
+  // focused selects at/above the 16px iOS Safari zoom-on-focus threshold,
+  // sm:text-sm restores the original size from 640px up.
+  md: "px-4 py-2.5 text-base sm:text-sm",
+  sm: "px-3.5 py-2 text-base sm:text-sm",
 } as const;
 
 /**
