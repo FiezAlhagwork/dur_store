@@ -48,13 +48,8 @@ export default function ContactCTA() {
         aria-hidden="true"
         width={200}
         height={200}
-        className={`pointer-events-none absolute -bottom-8 w-70  select-none sm:w-60  md:w-140 ${
-          isArabic
-            ? "-right-8 md:right-310 rotate-215 md:-bottom-12"
-            : "-left-8 md:left-310 rotate-180 md:-bottom-19"
-        }`}
+        className="pointer-events-none absolute -bottom-10 -right-19 w-70  rotate-180 select-none  sm:w-60 md:-bottom-23 md:-right-22 md:w-90"
       />
-
       <div className="site-container">
         <Reveal className="mx-auto max-w-2xl text-center">
           <span className="text-sm font-bold uppercase tracking-wider text-primary xl:text-base">
@@ -129,32 +124,30 @@ export default function ContactCTA() {
           <Reveal delay={0.12} className="lg:col-span-2">
             <div className="flex h-full flex-col justify-between gap-8 rounded-[28px] border border-white/50 bg-background/25 p-6 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.5),0_8px_30px_-12px_rgba(29,6,52,0.15)] backdrop-blur-xl backdrop-saturate-150 sm:p-8">
               <ul className="space-y-5">
-                {contactDetails.map(
-                  ({ icon: Icon, labelKey, value, href }) => (
-                    <li key={labelKey} className="flex items-start gap-4">
-                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary/5 text-primary">
-                        <Icon className="h-5 w-5" strokeWidth={1.75} />
-                      </span>
-                      <div>
-                        <p className="text-xs font-medium uppercase tracking-wide text-primary/50">
-                          {t(labelKey)}
+                {contactDetails.map(({ icon: Icon, labelKey, value, href }) => (
+                  <li key={labelKey} className="flex items-start gap-4">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary/5 text-primary">
+                      <Icon className="h-5 w-5" strokeWidth={1.75} />
+                    </span>
+                    <div>
+                      <p className="text-xs font-medium uppercase tracking-wide text-primary/50">
+                        {t(labelKey)}
+                      </p>
+                      {href ? (
+                        <a
+                          href={href}
+                          className="mt-0.5 block text-sm font-medium text-primary transition-colors hover:text-primary/70"
+                        >
+                          {value}
+                        </a>
+                      ) : (
+                        <p className="mt-0.5 text-sm font-medium text-primary">
+                          {value}
                         </p>
-                        {href ? (
-                          <a
-                            href={href}
-                            className="mt-0.5 block text-sm font-medium text-primary transition-colors hover:text-primary/70"
-                          >
-                            {value}
-                          </a>
-                        ) : (
-                          <p className="mt-0.5 text-sm font-medium text-primary">
-                            {value}
-                          </p>
-                        )}
-                      </div>
-                    </li>
-                  ),
-                )}
+                      )}
+                    </div>
+                  </li>
+                ))}
               </ul>
 
               <div>

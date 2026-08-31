@@ -19,7 +19,7 @@ export default async function WhyChooseUs({ locale }: { locale: string }) {
         aria-hidden="true"
         width={200}
         height={200}
-        className="pointer-events-none absolute -left-13 -top-11 w-80 select-none sm:w-90 md:-left-12 md:-top-22 md:w-150"
+        className="pointer-events-none absolute -left-13 -top-11 w-60 select-none sm:w-90 md:-left-12 md:-top-22 md:w-150"
       />
       <Image
         src="/eger.png"
@@ -27,7 +27,7 @@ export default async function WhyChooseUs({ locale }: { locale: string }) {
         aria-hidden="true"
         width={200}
         height={200}
-        className="pointer-events-none absolute -bottom-8 -right-8 w-70  rotate-180 select-none  sm:w-60 md:-bottom-12 md:-right-22 md:w-90"
+        className="pointer-events-none absolute -bottom-8 -right-8 w-60  rotate-180 select-none  sm:w-60 md:-bottom-12 md:-right-22 md:w-90"
       />
 
       <div className="site-container">

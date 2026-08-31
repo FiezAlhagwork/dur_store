@@ -21,7 +21,7 @@ export default function AboutUs() {
         aria-hidden="true"
         width={200}
         height={200}
-        className="pointer-events-none absolute -left-8 -top-11 w-80 select-none sm:w-90 md:-left-12 md:-top-22 md:w-150"
+        className="pointer-events-none absolute -left-9 -top-11 w-80 select-none sm:w-90 md:-left-12 md:-top-22 md:w-150"
       />
       <Image
         src="/eger.png"
@@ -29,7 +29,7 @@ export default function AboutUs() {
         aria-hidden="true"
         width={200}
         height={200}
-        className="pointer-events-none absolute -bottom-8 -right-8 w-70  rotate-180 select-none  sm:w-60 md:-bottom-12 md:-right-22 md:w-90"
+        className="pointer-events-none absolute -bottom-10 -right-19 w-70  rotate-180 select-none  sm:w-60 md:-bottom-12 md:-right-22 md:w-90"
       />
 
       <div className="relative mx-auto grid max-w-5xl grid-cols-1 items-center gap-10 px-6 lg:grid-cols-2 lg:gap-16 ">

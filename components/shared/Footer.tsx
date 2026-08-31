@@ -25,7 +25,7 @@ export default function Footer() {
         aria-hidden="true"
         width={200}
         height={200}
-        className="pointer-events-none absolute -left-8 -top-11 w-80 select-none sm:w-90 md:-left-12 md:-top-22 md:w-95"
+        className="pointer-events-none absolute -left-30 -top-13 w-80 select-none sm:w-90 md:-left-12 md:-top-22 md:w-95"
       />
       <Image
         src="/footer.png"
@@ -33,7 +33,7 @@ export default function Footer() {
         aria-hidden="true"
         width={200}
         height={200}
-        className="pointer-events-none absolute -bottom-8 -right-8 w-70  rotate-180 select-none  sm:w-60 md:-bottom-20 md:-right-22 md:w-90"
+        className="pointer-events-none absolute -bottom-18 -right-8 w-70  rotate-180 select-none  sm:w-60 md:-bottom-20 md:-right-22 md:w-90"
       />
       <div className="site-container py-14 md:py-20 z-100">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-12">
