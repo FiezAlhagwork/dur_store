@@ -3,6 +3,7 @@ import { locales } from "@/i18n/config";
 import { fetchProducts } from "@/services/products";
 import { SITE_URL } from "@/lib/seo/constants";
 
+export const revalidate = 3600; // ساعة، عدّلها حسب معدل تحديث الكتالوج عندك
 const withLanguages = (path: string) =>
   Object.fromEntries(locales.map((l) => [l, `${SITE_URL}/${l}${path}`]));
 
@@ -12,13 +13,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: "/products", priority: 0.8 },
   ];
 
-  const staticEntries: MetadataRoute.Sitemap = staticPaths.flatMap(({ path, priority }) =>
-    locales.map((locale) => ({
-      url: `${SITE_URL}/${locale}${path}`,
-      changeFrequency: "weekly",
-      priority,
-      alternates: { languages: withLanguages(path) },
-    })),
+  const staticEntries: MetadataRoute.Sitemap = staticPaths.flatMap(
+    ({ path, priority }) =>
+      locales.map((locale) => ({
+        url: `${SITE_URL}/${locale}${path}`,
+        changeFrequency: "weekly",
+        priority,
+        alternates: { languages: withLanguages(path) },
+      })),
   );
 
   let productEntries: MetadataRoute.Sitemap = [];
@@ -26,7 +28,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // The jewelry catalog is small enough for one page. If active products
     // ever approach ~1000, switch to `generateSitemaps` (multiple sitemap
     // files) instead of just raising per_page further.
-    const { data: products } = await fetchProducts({ is_active: true, per_page: 1000 });
+    const { data: products } = await fetchProducts({
+      is_active: true,
+      per_page: 1000,
+    });
 
     productEntries = products.flatMap((product) => {
       const path = `/products/${product.slug}`;

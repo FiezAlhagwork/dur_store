@@ -7,6 +7,7 @@ import Button from "@/components/ui/Button";
 import { useTranslation } from "react-i18next";
 import { useSettings } from "@/hooks/useSettings";
 import { getOptimizedVideoUrl } from "@/utils/video";
+import { getOptimizedImageUrl } from "@/utils/image";
 
 const curveEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -73,12 +74,19 @@ export default function Hero() {
           <video
             key={hero.video_url}
             src={getOptimizedVideoUrl(hero.video_url)}
-            poster={hero.poster_url || undefined}
+            poster={hero.poster_url ? getOptimizedImageUrl(hero.poster_url) : undefined}
             autoPlay
             muted
             loop
             playsInline
-            preload="auto"
+            // "auto" told the browser to start pulling down the whole video
+            // immediately, at high priority — competing for the same
+            // bandwidth the poster (this page's LCP element) needs to paint
+            // first, which is what a slow-4G Lighthouse run was actually
+            // measuring. "metadata" only fetches enough to read duration/
+            // dimensions up front; the full video still starts downloading
+            // right after, autoPlay pulls it in on its own.
+            preload="metadata"
             // @ts-expect-error — `fetchPriority` is real on the DOM (the
             // attribute browsers read is `fetchpriority`, lowercase, same as
             // any other HTML attribute), but React's types only declare it
