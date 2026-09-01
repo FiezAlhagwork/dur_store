@@ -2,11 +2,10 @@
 
 import { use } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import { Gem, Weight, ChevronLeft, ChevronRight } from "lucide-react";
 import { useProduct, useProducts } from "@/hooks/useProducts";
-import ProductImageCarousel from "@/components/site/Products/ProductImageCarousel";
+import ProductGallery from "@/components/site/Products/ProductGallery";
 import ProductCard from "@/components/site/Products/ProductCard";
 import Button from "@/components/ui/Button";
 import ProductPrice from "@/components/ui/ProductPrice";
@@ -14,6 +13,7 @@ import Skeleton, { SkeletonGroup } from "@/components/ui/Skeleton";
 import Reveal from "@/components/shared/Reveal";
 import { getWhatsAppOrderLink } from "@/lib/whatsapp";
 import { useSettings } from "@/hooks/useSettings";
+import { getLocalizedName } from "@/utils/helper";
 
 type ProductDetailsPageClientProps = {
   params: Promise<{ id: string }>;
@@ -68,14 +68,6 @@ export default function ProductDetailsPageClient({
   }
 
   if (isError) {
-    /*
-     * A 404 is "this product doesn't exist" — the notFound screen this page
-     * already had. Anything else (500, a dropped connection) is a different
-     * situation the visitor can fix by retrying, so it gets its own message
-     * rather than being folded into "not found", which would be misleading —
-     * the product might exist just fine. Branching on the status code, not
-     * the error text, matches `isForbidden` elsewhere in this codebase.
-     */
     if (error.status === 404) {
       return (
         <main
@@ -115,27 +107,9 @@ export default function ProductDetailsPageClient({
 
   return (
     <main
-      className="relative overflow-hidden bg-second py-10 md:py-26"
+      className="relative overflow-hidden  py-10 md:py-26"
       data-navbar-theme="dark"
     >
-      <Image
-        src="/eger.png"
-        alt=""
-        aria-hidden="true"
-        width={200}
-        height={200}
-        className="pointer-events-none absolute -left-8 -top-11 w-80 select-none sm:w-90 md:-left-12 md:-top-22 md:w-150"
-      />
-
-      <Image
-        src="/eger.png"
-        alt=""
-        aria-hidden="true"
-        width={200}
-        height={200}
-        className="pointer-events-none absolute -bottom-8 -right-8 w-70  rotate-180 select-none  sm:w-60 md:-bottom-12 md:-right-22 md:w-90"
-      />
-
       <div className="site-container">
         <Link
           href={`/${locale}/products`}
@@ -147,18 +121,32 @@ export default function ProductDetailsPageClient({
 
         <div className="mt-6 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-14 xl:gap-20">
           <Reveal>
-            <div className="overflow-hidden rounded-2xl border border-primary/10">
-              <ProductImageCarousel
-                images={product.images}
-                alt={name}
-                className="h-80 sm:h-105 lg:h-130"
-                badge={isOutOfStock ? t("products.outOfStock") : undefined}
-              />
-            </div>
+            <ProductGallery
+              images={product.images}
+              alt={name}
+              className="h-80 sm:h-105 lg:h-130"
+              badge={isOutOfStock ? t("products.outOfStock") : undefined}
+            />
           </Reveal>
 
-          <Reveal delay={0.08}>
-            <p className="text-xs font-medium uppercase tracking-[0.16em] text-primary/50">
+          {/*
+            `min-w-0`: a CSS Grid column has an implicit `min-width: auto`
+            (content-based), not zero — so a long unbroken run of text can
+            widen this column past its track and spill out of the page
+            regardless of `max-w-prose` on the paragraph below. This is the
+            actual fix; `break-words` on the paragraph is a second layer for
+            a single pathologically long word/URL with no spaces to wrap at.
+          */}
+          <Reveal delay={0.08} className="min-w-0">
+            {product.category && (
+              <Link
+                href={`/${locale}/products?category=${product.category.slug}`}
+                className="text-xs font-medium uppercase tracking-[0.16em] text-primary/40 transition-colors hover:text-primary/60"
+              >
+                {getLocalizedName(product.category, locale)}
+              </Link>
+            )}
+            <p className="mt-1 text-xs font-medium uppercase tracking-[0.16em] text-primary/50">
               {t("products.karat", { karat: product.karat })}
             </p>
             <h1 className="mt-2 font-serif text-2xl font-bold text-primary sm:text-3xl md:text-4xl">
@@ -172,7 +160,7 @@ export default function ProductDetailsPageClient({
               className="mt-3"
             />
 
-            <p className="mt-6 max-w-prose text-sm leading-relaxed text-foreground/70 sm:text-base">
+            <p className="mt-6 max-w-prose wrap-break-word text-sm leading-relaxed text-foreground/70 sm:text-base">
               {description}
             </p>
 
@@ -200,6 +188,12 @@ export default function ProductDetailsPageClient({
                 </span>
               )}
             </div>
+
+            {!isOutOfStock && product.stock <= 5 && (
+              <p className="mt-4 text-sm font-medium text-red-600">
+                {t("productDetail.lowStock", { count: product.stock })}
+              </p>
+            )}
 
             <div className="mt-8">
               {!isOutOfStock ? (

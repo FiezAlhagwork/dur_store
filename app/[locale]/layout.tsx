@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import { locales } from "@/i18n/config";
+import { locales, type Locale } from "@/i18n/config";
 import I18nProvider from "@/components/providers/I18nProvider";
 import QueryProvider from "@/components/providers/QueryProvider";
+import { SITE_NAME } from "@/lib/seo/constants";
+import { buildOrganizationJsonLd, buildWebSiteJsonLd } from "@/lib/seo/jsonld";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({
@@ -34,6 +36,9 @@ export async function generateMetadata({
     openGraph: {
       title,
       description,
+      siteName: SITE_NAME[locale as Locale],
+      type: "website",
+      url: `/${locale}`,
       // Temporary: the brand mark on its own backdrop, not a purpose-built
       // 1200x630 OG banner (public/dur.jpg is square, 1000x1000) — most
       // platforms will center-crop or letterbox it. Swap for a proper
@@ -58,6 +63,15 @@ export default async function LocaleLayout({
   return (
     <QueryProvider>
       <I18nProvider locale={locale}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([
+              buildOrganizationJsonLd(locale as Locale),
+              buildWebSiteJsonLd(locale as Locale),
+            ]),
+          }}
+        />
         <div dir={locale === "ar" ? "rtl" : "ltr"}>{children}</div>
       </I18nProvider>
     </QueryProvider>

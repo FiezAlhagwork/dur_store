@@ -112,6 +112,8 @@
     "gemstone": "Gemstone",
     "relatedTitle": "You May Also Like",
     "notFound": "Product not found.",
+    "lowStock_one": "Only {{count}} left in stock!",
+    "lowStock_other": "Only {{count}} left in stock!",
     "gemstones": {
       "diamond": "Diamond"
     }

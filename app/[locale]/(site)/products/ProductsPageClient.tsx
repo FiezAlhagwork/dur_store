@@ -3,32 +3,12 @@
 import { Suspense } from "react";
 import { useTranslation } from "react-i18next";
 import ProductsGrid from "@/components/site/Products/ProductsGrid";
-import Image from "next/image";
 
 export default function ProductsPageClient() {
   const { t } = useTranslation("common");
 
   return (
     <main className=" relative overflow-hidden">
-
-            <Image
-              src="/eger.png"
-              alt=""
-              aria-hidden="true"
-              width={200}
-              height={200}
-              className="pointer-events-none absolute -left-8 -top-11 w-80 select-none sm:w-90 md:-left-12 md:-top-22 md:w-150"
-            />
-
-            <Image
-              src="/eger.png"
-              alt=""
-              aria-hidden="true"
-              width={200}
-              height={200}
-              className="pointer-events-none absolute -bottom-8 -right-8 w-70  rotate-180 select-none  sm:w-60 md:-bottom-12 md:-right-22 md:w-90"
-            />
-
       <section
         className="bg-second pb-12 pt-20 text-center md:pt-30"
         data-navbar-theme="dark"

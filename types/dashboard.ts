@@ -40,7 +40,7 @@ export type CategoryWithProductCount = Category & { products_count: number };
  * them, thumbnails start rendering with no change needed here. It is a
  * separate type from `Product` for the same reason `ToggledProduct` is: so a
  * value that has no images can never be passed somewhere that requires them
- * (`ProductImageCarousel` would throw on `[...undefined]`).
+ * (`ProductGallery` would throw on `[...undefined]`).
  */
 export type DashboardProduct = Omit<Product, "images"> & {
   images?: ProductImage[];

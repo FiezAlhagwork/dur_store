@@ -112,6 +112,11 @@
     "gemstone": "الحجر الكريم",
     "relatedTitle": "قد يعجبك أيضاً",
     "notFound": "المنتج غير موجود.",
+    "lowStock_one": "متبقّي قطعة وحدة بس!",
+    "lowStock_two": "متبقّي قطعتين بس!",
+    "lowStock_few": "متبقّي {{count}} قطع بس!",
+    "lowStock_many": "متبقّي {{count}} قطعة بس!",
+    "lowStock_other": "متبقّي {{count}} قطعة بس!",
     "gemstones": {
       "diamond": "ألماس"
     }
