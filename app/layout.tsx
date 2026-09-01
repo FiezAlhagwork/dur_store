@@ -38,18 +38,8 @@ const thmanyahSerifText = localFont({
 });
 
 export const metadata: Metadata = {
-  // `/` (this layout's only reachable route with no [locale] segment) does an
-  // immediate server redirect to the default locale, so this title/description
-  // is never actually shown — it's a fallback safety net for whatever gets to
-  // read the response before that redirect, not dead code to skip fixing.
   title: "دُرّ | متجر مجوهرات",
   description: "اكتشف تشكيلتنا من المجوهرات الفاخرة",
-  /*
-   * Base for URL-based metadata fields that use a relative path (e.g. the
-   * openGraph.images "/dur.jpg" set in app/[locale]/layout.tsx, or the
-   * alternates built by lib/seo/alternates.ts) — Next.js throws a build error
-   * resolving a relative metadata URL without one.
-   */
   metadataBase: new URL(SITE_URL),
   icons: {
     icon: [
@@ -60,7 +50,11 @@ export const metadata: Metadata = {
     // iOS doesn't switch this by appearance mode, so just one variant.
     apple: "/logo.png",
   },
+  verification : {
+    google:"8x4IZ7rQVSd0LtIBFLnPdFL2r0sJr7WI1Q4TBoMnQ_0" 
+  }
 };
+
 
 export default function RootLayout({
   children,
