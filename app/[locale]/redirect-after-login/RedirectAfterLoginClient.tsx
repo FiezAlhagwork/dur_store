@@ -27,7 +27,7 @@ function RedirectShell({ children }: { children: ReactNode }) {
     <main className="relative flex min-h-screen w-full items-center justify-center bg-second px-5 py-12 sm:px-8">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <Image
-          src="/eger.png"
+          src="/eger.webp"
           alt=""
           aria-hidden="true"
           width={200}
@@ -35,7 +35,7 @@ function RedirectShell({ children }: { children: ReactNode }) {
           className="pointer-events-none absolute -left-8 -top-11 w-80 select-none sm:w-90 md:-left-12 md:-top-22 md:w-120"
         />
         <Image
-          src="/eger.png"
+          src="/eger.webp"
           alt=""
           aria-hidden="true"
           width={200}

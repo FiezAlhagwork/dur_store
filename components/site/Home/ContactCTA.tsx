@@ -42,7 +42,7 @@ export default function ContactCTA() {
       data-navbar-theme="dark"
     >
       <Image
-        src="/eger.png"
+        src="/eger.webp"
         alt=""
         aria-hidden="true"
         width={200}

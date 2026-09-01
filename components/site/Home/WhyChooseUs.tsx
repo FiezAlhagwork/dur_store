@@ -14,7 +14,7 @@ export default async function WhyChooseUs({ locale }: { locale: string }) {
       data-navbar-theme="dark"
     >
       <Image
-        src="/eger.png"
+        src="/eger.webp"
         alt=""
         aria-hidden="true"
         width={200}
@@ -22,7 +22,7 @@ export default async function WhyChooseUs({ locale }: { locale: string }) {
         className="pointer-events-none absolute -left-13 -top-11 w-60 select-none sm:w-90 md:-left-12 md:-top-22 md:w-110"
       />
       <Image
-        src="/eger.png"
+        src="/eger.webp"
         alt=""
         aria-hidden="true"
         width={200}

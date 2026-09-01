@@ -16,7 +16,7 @@ export default function AboutUs() {
       data-navbar-theme="dark"
     >
       <Image
-        src="/eger.png"
+        src="/eger.webp"
         alt=""
         aria-hidden="true"
         width={200}
@@ -24,7 +24,7 @@ export default function AboutUs() {
         className="pointer-events-none absolute -left-9 -top-11 w-80 select-none sm:w-90 md:-left-12 md:-top-22 md:w-150"
       />
       <Image
-        src="/eger.png"
+        src="/eger.webp"
         alt=""
         aria-hidden="true"
         width={200}
@@ -35,7 +35,7 @@ export default function AboutUs() {
       <div className="relative mx-auto grid max-w-5xl grid-cols-1 items-center gap-10 px-6 lg:grid-cols-2 lg:gap-16 ">
         <Reveal className="relative aspect-4/5 w-full    ">
           <Image
-            src="/logo_removed.png"
+            src="/logo_removed.webp"
             alt={t("about.imageAlt")}
             fill
             className="object-cover drop-shadow-2xl rounded-xl"

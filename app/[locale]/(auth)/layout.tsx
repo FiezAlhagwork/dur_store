@@ -25,7 +25,7 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
       <aside className="relative hidden overflow-hidden bg-primary lg:block ">
         {/* <div className="absolute inset-6 overflow-hidden "> */}
           <Image
-            src="/deff.png"
+            src="/deff.webp"
             alt=""
             aria-hidden="true"
             fill
@@ -75,7 +75,7 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
         */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <Image
-            src="/eger.png"
+            src="/eger.webp"
             alt=""
             aria-hidden="true"
             width={200}
@@ -83,7 +83,7 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
             className="pointer-events-none absolute -left-8 -top-11 w-80 select-none sm:w-90 md:-left-12 md:-top-22 md:w-120"
           />
           <Image
-            src="/eger.png"
+            src="/eger.webp"
             alt=""
             aria-hidden="true"
             width={200}
