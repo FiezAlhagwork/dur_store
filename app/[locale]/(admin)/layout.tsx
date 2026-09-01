@@ -1,7 +1,15 @@
 import type { ReactNode } from "react";
+import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs/server";
 import AdminShell from "@/components/admin/AdminShell";
+
+// One `noindex` covers every page under (admin) — nothing here should ever
+// turn up in search results. Each dashboard page.tsx still sets its own
+// short `title` for the browser tab.
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
 
 /**
  * Resource-based auth guard for all `(admin)` routes (e.g. /dashboard),

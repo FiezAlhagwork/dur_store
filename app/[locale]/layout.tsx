@@ -23,7 +23,13 @@ export async function generateMetadata({
     : "Discover our collection of fine jewelry";
 
   return {
-    title,
+    // A template so every other page in the app only sets its own short
+    // segment (e.g. "المنتجات") instead of repeating "| دُر" everywhere.
+    // Pages that don't set a title at all (home) get `default` as-is.
+    title: {
+      default: title,
+      template: isArabic ? "%s | دُر" : "%s | Dur",
+    },
     description,
     openGraph: {
       title,

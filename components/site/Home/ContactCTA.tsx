@@ -17,7 +17,6 @@ import Image from "next/image";
 export default function ContactCTA() {
   const { t, i18n } = useTranslation("common");
   const locale = i18n.language === "ar" ? "ar" : "en";
-  const isArabic = i18n.language === "ar";
   const schema = useMemo(() => getContactSchema(t), [t]);
   const { settings } = useSettings();
   const contactDetails = getContactDetails(settings, locale);

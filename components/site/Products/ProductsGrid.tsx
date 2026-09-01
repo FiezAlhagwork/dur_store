@@ -140,7 +140,7 @@ export default function ProductsGrid() {
           </Button>
         </div>
       ) : showLoading ? (
-        <div className="mt-10 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 ">
           {Array.from({ length: SKELETON_COUNT }).map((_, index) => (
             <ProductCardSkeleton key={index} />
           ))}
@@ -151,7 +151,7 @@ export default function ProductsGrid() {
         </p>
       ) : (
         <>
-          <div className="mt-10 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-3">
+          <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 ">
             {products.map((product, index) => (
               <Reveal key={product.id} delay={Math.min((index % SKELETON_COUNT) * 0.06, 0.3)}>
                 <ProductCard product={product} />

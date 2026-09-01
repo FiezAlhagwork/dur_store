@@ -17,7 +17,13 @@ import Button from "../ui/Button";
 import { getLocalizedNavLinks } from "@/constants/nav";
 import { useLanguageToggle } from "@/hooks/useLanguageToggle";
 
-const SCROLL_THRESHOLD = 60;
+// Pixels of net scroll movement (not distance from the page top) before
+// visibility flips — filters jitter/momentum noise without gating on how
+// far down the page you already are. That distance-from-top gate is what
+// made a long section (e.g. Hero, formerly 200vh) feel unresponsive: past
+// the first 60px the old threshold was permanently satisfied and stopped
+// meaning anything, no matter how tiny the actual movement was.
+const SCROLL_DELTA_THRESHOLD = 5;
 
 type NavbarTheme = "light" | "dark";
 const DEFAULT_THEME: NavbarTheme = "light";
@@ -41,26 +47,26 @@ const Navbar = () => {
 
   const toggleLanguage = useLanguageToggle();
 
-  // Show/hide on scroll direction (unchanged)
+  // Hide on scroll down, show on scroll up — the reverse of either was a
+  // bug, not a design choice.
   useEffect(() => {
     lastScrollY.current = window.scrollY;
 
     const update = () => {
       const currentScrollY = window.scrollY;
       const atTop = currentScrollY <= 10;
+      const delta = currentScrollY - lastScrollY.current;
 
       setIsAtTop(atTop);
 
       if (atTop) {
         setIsVisible(true);
-      } else if (
-        currentScrollY > lastScrollY.current &&
-        currentScrollY > SCROLL_THRESHOLD
-      ) {
-        setIsVisible(true);
-      } else if (currentScrollY < lastScrollY.current) {
+      } else if (delta > SCROLL_DELTA_THRESHOLD) {
         setIsVisible(false);
+      } else if (delta < -SCROLL_DELTA_THRESHOLD) {
+        setIsVisible(true);
       }
+      // else: delta within the noise band — leave visibility as-is.
 
       lastScrollY.current = currentScrollY;
     };
