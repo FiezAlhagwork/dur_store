@@ -52,6 +52,36 @@
     "title": "Shop by Category",
     "subtitle": "Find the piece that matches your style, from rings to earrings."
   },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Frequently Asked Questions",
+    "items": {
+      "customization": {
+        "question": "Can pieces be customized?",
+        "answer": "Yes, we offer customization on select pieces to match each client's taste and personal details."
+      },
+      "limited": {
+        "question": "Are all pieces limited edition?",
+        "answer": "Yes, we focus on limited collections to preserve exclusivity and distinction."
+      },
+      "materials": {
+        "question": "What materials do you use?",
+        "answer": "We use high-quality gold and diamonds, with precise standards in selecting materials and stones."
+      },
+      "shipping": {
+        "question": "Do you ship to the Gulf countries?",
+        "answer": "Yes, we offer safe and fast shipping to most Gulf countries."
+      },
+      "packaging": {
+        "question": "Is the packaging luxurious?",
+        "answer": "Every order arrives in DUR's signature luxury packaging, designed to be part of the collecting experience."
+      },
+      "customOrders": {
+        "question": "How long do custom orders take?",
+        "answer": "Timing varies by design, and the expected timeframe is confirmed when the order is placed."
+      }
+    }
+  },
   "contact": {
     "eyebrow": "Get in Touch",
     "title": "Contact Us",

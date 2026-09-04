@@ -93,7 +93,7 @@ export default async function ProductDetailsPage({
           }}
         />
       )}
-      <ProductDetailsPageClient params={params} />
+      <ProductDetailsPageClient params={params} initialProduct={product ?? undefined} />
     </>
   );
 }

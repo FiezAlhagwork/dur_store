@@ -111,6 +111,21 @@ export interface WhyChooseUsCardProps {
   index: number;
 }
 
+/**
+ * One accordion row in the homepage FAQ section. `isOpen`/`onToggle` are
+ * lifted to the parent (`FAQ.tsx`) rather than kept as local state here, so
+ * the parent can enforce "opening one question closes whichever was open" —
+ * that only works if there's a single source of truth for which index is
+ * open, not one independent per item.
+ */
+export interface FAQItemProps {
+  question: string;
+  answer: string;
+  isOpen: boolean;
+  onToggle: () => void;
+  index: number;
+}
+
 /** Which auth intent a page represents. Both pages support both outcomes —
  * e.g. `login` silently continues into account creation when the email is
  * new (see lib/auth/orchestration.ts) — this only decides which Clerk call

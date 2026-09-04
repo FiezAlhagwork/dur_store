@@ -3,6 +3,7 @@ import Hero from "@/components/site/Home/Hero";
 import AboutUs from "@/components/site/Home/AboutUs";
 import WhyChooseUs from "@/components/site/Home/WhyChooseUs";
 import Categories from "@/components/site/Home/Categories";
+import FAQ from "@/components/site/Home/FAQ";
 import ContactCTA from "@/components/site/Home/ContactCTA";
 import { buildAlternates } from "@/lib/seo/alternates";
 import type { Locale } from "@/i18n/config";
@@ -32,6 +33,7 @@ export default async function Home({
       <AboutUs />
       <Categories />
       <WhyChooseUs locale={locale} />
+      <FAQ />
       <ContactCTA />
     </>
   );

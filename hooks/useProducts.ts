@@ -67,11 +67,25 @@ export function useProducts(filters: ProductFilters = {}, enabled = true) {
  * Takes an id or a slug — `fetchProduct` accepts either. The admin edit page
  * passes the numeric id, since that never changes; the public product page
  * passes the slug straight from the URL.
+ *
+ * `initialData` lets a caller that already has the product (the public page
+ * fetches it server-side for `generateMetadata`/JSON-LD anyway — see its
+ * `page.tsx`) seed the query with it, so this hook starts in a `success`
+ * state instead of `pending` on the very first render. That's what gets the
+ * actual product content into the server-rendered HTML instead of a
+ * skeleton — a plain client-side fetch has nothing to show until it
+ * resolves in the browser, which is invisible to any crawler that doesn't
+ * execute JavaScript.
  */
-export function useProduct(idOrSlug: number | string, enabled = true) {
+export function useProduct(
+  idOrSlug: number | string,
+  enabled = true,
+  initialData?: Product,
+) {
   return useQuery<Product, ApiError>({
     queryKey: productKeys.detail(idOrSlug),
     queryFn: () => fetchProduct(idOrSlug),
+    initialData,
     enabled:
       enabled &&
       (typeof idOrSlug === "string" ? idOrSlug.length > 0 : Number.isFinite(idOrSlug)),

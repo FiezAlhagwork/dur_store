@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import { Gem, Weight, ChevronLeft, ChevronRight } from "lucide-react";
 import { useProduct, useProducts } from "@/hooks/useProducts";
+import type { Product } from "@/types/product";
 import ProductGallery from "@/components/site/Products/ProductGallery";
 import ProductCard from "@/components/site/Products/ProductCard";
 import Button from "@/components/ui/Button";
@@ -17,6 +18,14 @@ import { getLocalizedName } from "@/utils/helper";
 
 type ProductDetailsPageClientProps = {
   params: Promise<{ id: string }>;
+  /**
+   * The same product `page.tsx` already fetched server-side for its
+   * metadata/JSON-LD (undefined on a bad/deleted slug). Seeds `useProduct`
+   * so this component renders the real content on the very first render —
+   * server-side included — instead of a skeleton until the client re-fetches
+   * it. See the comment on `useProduct`'s `initialData` param.
+   */
+  initialProduct?: Product;
 };
 
 /** How many related products to show, at most. */
@@ -24,6 +33,7 @@ const RELATED_LIMIT = 3;
 
 export default function ProductDetailsPageClient({
   params,
+  initialProduct,
 }: ProductDetailsPageClientProps) {
   const { id: slug } = use(params);
   const { t, i18n } = useTranslation("common");
@@ -33,7 +43,11 @@ export default function ProductDetailsPageClient({
 
   // `useProduct` accepts an id or a slug — the API resolves either — and this
   // page's URL always carries the slug.
-  const { data: product, isPending, isError, error } = useProduct(slug);
+  const { data: product, isPending, isError, error } = useProduct(
+    slug,
+    true,
+    initialProduct,
+  );
   const { settings } = useSettings();
 
   const relatedEnabled = !!product;

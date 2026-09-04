@@ -52,6 +52,39 @@ export const WHY_CHOOSE_US = [
 ];
 
 /**
+ * Homepage FAQ content. Same pattern as `WHY_CHOOSE_US` above rather than a
+ * single `t(key, { returnObjects: true })` array — that pattern isn't used
+ * anywhere else in this codebase, so a per-item translation key stays
+ * consistent with how every other list-driven section sources its text.
+ */
+export const FAQ_ITEMS = [
+  {
+    questionKey: "faq.items.customization.question",
+    answerKey: "faq.items.customization.answer",
+  },
+  {
+    questionKey: "faq.items.limited.question",
+    answerKey: "faq.items.limited.answer",
+  },
+  {
+    questionKey: "faq.items.materials.question",
+    answerKey: "faq.items.materials.answer",
+  },
+  {
+    questionKey: "faq.items.shipping.question",
+    answerKey: "faq.items.shipping.answer",
+  },
+  {
+    questionKey: "faq.items.packaging.question",
+    answerKey: "faq.items.packaging.answer",
+  },
+  {
+    questionKey: "faq.items.customOrders.question",
+    answerKey: "faq.items.customOrders.answer",
+  },
+] as const;
+
+/**
  * Contact details and social links, built from live settings rather than
  * hardcoded — mirrors `getLocalizedNavLinks` in `constants/nav.ts`: a pure
  * function taking the data and locale, producing the exact shape `Footer` and
