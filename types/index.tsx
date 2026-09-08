@@ -126,6 +126,21 @@ export interface FAQItemProps {
   index: number;
 }
 
+/**
+ * One testimonial card in the homepage reviews carousel. Takes already
+ * translated strings, like every other card in this file — `Reviews.tsx`
+ * resolves the keys, the card only renders.
+ *
+ * No `index` here, unlike `FAQItemProps`/`WhyChooseUsCardProps`: those
+ * stagger a list of siblings that appear together, while only one review is
+ * ever mounted at a time, so there is nothing to stagger against.
+ */
+export interface ReviewCardProps {
+  quote: string;
+  name: string;
+  location: string;
+}
+
 /** Which auth intent a page represents. Both pages support both outcomes —
  * e.g. `login` silently continues into account creation when the email is
  * new (see lib/auth/orchestration.ts) — this only decides which Clerk call

@@ -73,6 +73,12 @@ export default function RootLayout({
       <html
         lang="ar"
         suppressHydrationWarning
+        // `scroll-behavior: smooth` is set globally on `<html>` (globals.css).
+        // Next.js 16 stopped overriding that during route transitions by
+        // default (see the version-16 upgrade guide) — this attribute opts
+        // back into the old behavior: an instant scroll-to-top on navigation
+        // instead of an animated one fighting the page's own transition.
+        data-scroll-behavior="smooth"
         className={`h-full antialiased ${thmanyahSans.variable} ${thmanyahSerifDisplay.variable} ${thmanyahSerifText.variable}`}
       >
         <body className="min-h-full flex flex-col">{children}</body>

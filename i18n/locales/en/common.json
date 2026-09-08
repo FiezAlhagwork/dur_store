@@ -52,6 +52,35 @@
     "title": "Shop by Category",
     "subtitle": "Find the piece that matches your style, from rings to earrings."
   },
+  "reviews": {
+    "eyebrow": "Reviews",
+    "title": "What Our Clients Say",
+    "previous": "Previous review",
+    "next": "Next review",
+    "goTo": "Show review {{number}}",
+    "items": {
+      "noura": {
+        "quote": "What I loved most about DUR was feeling that the piece had been designed for me personally.",
+        "name": "Noura",
+        "location": "United Arab Emirates"
+      },
+      "sara": {
+        "quote": "The details, the packaging, the quality of the piece — everything was more refined than I expected.",
+        "name": "Sara",
+        "location": "Saudi Arabia"
+      },
+      "layan": {
+        "quote": "I loved the idea of quiet luxury. The piece turns heads without ever overstating itself.",
+        "name": "Layan",
+        "location": "Kuwait"
+      },
+      "dana": {
+        "quote": "The customisation and the care were exceptional. It genuinely felt like owning something rare.",
+        "name": "Dana",
+        "location": "Qatar"
+      }
+    }
+  },
   "faq": {
     "eyebrow": "FAQ",
     "title": "Frequently Asked Questions",

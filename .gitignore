@@ -33,6 +33,9 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# ...except the template, which carries no values — only the variable names
+# and what each one is for, so a fresh clone knows what `.env.test` needs.
+!.env.test.example
 
 # vercel
 .vercel

@@ -52,6 +52,35 @@ export const WHY_CHOOSE_US = [
 ];
 
 /**
+ * Homepage testimonials. Same per-item-key pattern as `FAQ_ITEMS` below.
+ *
+ * The order here is the order they appear in the carousel, so it is content,
+ * not incidental — reordering this array reorders the section.
+ */
+export const REVIEWS = [
+  {
+    quoteKey: "reviews.items.noura.quote",
+    nameKey: "reviews.items.noura.name",
+    locationKey: "reviews.items.noura.location",
+  },
+  {
+    quoteKey: "reviews.items.sara.quote",
+    nameKey: "reviews.items.sara.name",
+    locationKey: "reviews.items.sara.location",
+  },
+  {
+    quoteKey: "reviews.items.layan.quote",
+    nameKey: "reviews.items.layan.name",
+    locationKey: "reviews.items.layan.location",
+  },
+  {
+    quoteKey: "reviews.items.dana.quote",
+    nameKey: "reviews.items.dana.name",
+    locationKey: "reviews.items.dana.location",
+  },
+] as const;
+
+/**
  * Homepage FAQ content. Same pattern as `WHY_CHOOSE_US` above rather than a
  * single `t(key, { returnObjects: true })` array — that pattern isn't used
  * anywhere else in this codebase, so a per-item translation key stays
