@@ -1,4 +1,5 @@
 import { Locale } from "@/i18n/config";
+import type { Product } from "@/types/product";
 import { Gem, LucideIcon } from "lucide-react";
 import { TargetAndTransition } from "motion";
 import type { TextareaHTMLAttributes } from "react";
@@ -124,6 +125,17 @@ export interface FAQItemProps {
   isOpen: boolean;
   onToggle: () => void;
   index: number;
+}
+
+/**
+ * The spec grid on the product details page. Takes the whole product rather
+ * than pre-picked fields because which specs exist varies per piece —
+ * `gold_weight`, `gemstone_type` and `gemstone_carat` are all nullable in
+ * `types/product.ts`, and the grid renders only the ones actually recorded.
+ */
+export interface ProductSpecsProps {
+  product: Product;
+  className?: string;
 }
 
 /**

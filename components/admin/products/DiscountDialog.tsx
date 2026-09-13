@@ -144,7 +144,7 @@ export default function DiscountDialog({
         <p className="text-sm text-foreground/60">
           {getLocalizedName(product, locale)} —{" "}
           <span className="tabular-nums">
-            {formatPrice(product.price, locale)}
+            {formatPrice(product.price)}
           </span>
         </p>
 
@@ -163,7 +163,7 @@ export default function DiscountDialog({
           <p className="text-sm text-foreground/60">
             {t("admin.products.form.finalPrice")}:{" "}
             <span className="font-semibold tabular-nums text-primary">
-              {formatPrice(previewPrice, locale)}
+              {formatPrice(previewPrice)}
             </span>
           </p>
         )}

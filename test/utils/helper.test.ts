@@ -38,39 +38,42 @@ describe("getLocalizedName", () => {
 
 describe("formatPrice", () => {
   it("omits decimals for a whole number", () => {
-    expect(formatPrice(790, "en")).toBe("$790");
+    expect(formatPrice(790)).toBe("$790");
   });
 
   it("shows exactly two decimals for a fractional price", () => {
     // 15% off $790 — the real case that motivated this rule (see the
     // function's own comment): rounding would misquote what's charged.
-    expect(formatPrice(671.5, "en")).toBe("$671.50");
+    expect(formatPrice(671.5)).toBe("$671.50");
   });
 
-  it("renders in a visibly different (Arabic-Indic) script for ar", () => {
-    // Exact Arabic currency formatting is ICU/CLDR-version-sensitive, so
-    // this checks the meaningful thing — it's not the same string as the
-    // English rendering and it uses Arabic-Indic digits — without pinning
-    // an exact byte-for-byte string that could break on a Node upgrade.
-    const result = formatPrice(790, "ar");
-    expect(result).not.toBe(formatPrice(790, "en"));
-    expect(result).toMatch(/[٠-٩]/);
+  it("never emits Arabic-Indic digits, whatever the UI language", () => {
+    // Deliberately locale-independent: money reads as `$790` in both
+    // languages. This used to format Arabic through `ar-EG` (`‏٧٩٠ US$`).
+    // The function no longer takes a locale at all — this asserts the
+    // resulting output, which is the part a customer sees.
+    expect(formatPrice(790)).not.toMatch(/[٠-٩]/);
+    expect(formatPrice(671.5)).not.toMatch(/[٠-٩]/);
+  });
+
+  it("puts the symbol before the number, not after it", () => {
+    // `ar-*` locales render `790 US$`; en-US renders `$790`. Pinning the
+    // leading `$` is what keeps the two languages identical.
+    expect(formatPrice(790).startsWith("$")).toBe(true);
   });
 });
 
 describe("formatPercent", () => {
-  it("formats a whole percentage for en", () => {
-    expect(formatPercent(15, "en")).toBe("15%");
+  it("formats a whole percentage", () => {
+    expect(formatPercent(15)).toBe("15%");
   });
 
-  it("rounds to the nearest whole percent for en", () => {
-    expect(formatPercent(14.6, "en")).toBe("15%");
+  it("rounds to the nearest whole percent", () => {
+    expect(formatPercent(14.6)).toBe("15%");
   });
 
-  it("renders Arabic-Indic digits for ar", () => {
-    const result = formatPercent(15, "ar");
-    expect(result).not.toBe(formatPercent(15, "en"));
-    expect(result).toMatch(/[٠-٩]/);
+  it("never emits Arabic-Indic digits either", () => {
+    expect(formatPercent(15)).not.toMatch(/[٠-٩]/);
   });
 });
 

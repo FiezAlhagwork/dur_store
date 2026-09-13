@@ -15,7 +15,7 @@ describe("ProductPrice", () => {
   const discounted = { price: 790, has_discount: true, final_price: 671.5 };
 
   it("renders a single price for an undiscounted product", () => {
-    renderWithI18n(<ProductPrice product={plain} locale="en" />);
+    renderWithI18n(<ProductPrice product={plain} />);
 
     expect(screen.getByText("$790")).toBeInTheDocument();
     expect(
@@ -24,7 +24,7 @@ describe("ProductPrice", () => {
   });
 
   it("renders the final price alongside a labelled original when discounted", () => {
-    renderWithI18n(<ProductPrice product={discounted} locale="en" />);
+    renderWithI18n(<ProductPrice product={discounted} />);
 
     expect(screen.getByText("$671.50")).toBeInTheDocument();
 
@@ -42,7 +42,7 @@ describe("ProductPrice", () => {
     renderWithI18n(
       <ProductPrice
         product={{ price: 790, has_discount: true, final_price: 790 }}
-        locale="en"
+       
       />,
     );
 
@@ -51,21 +51,47 @@ describe("ProductPrice", () => {
   });
 
   it("hides the discount badge by default", () => {
-    renderWithI18n(<ProductPrice product={discounted} locale="en" />);
+    renderWithI18n(<ProductPrice product={discounted} />);
     expect(screen.queryByText(/خصم/)).not.toBeInTheDocument();
   });
 
   it("shows the percentage badge when asked", () => {
-    renderWithI18n(<ProductPrice product={discounted} locale="en" showBadge />);
+    renderWithI18n(<ProductPrice product={discounted} showBadge />);
     expect(screen.getByText("خصم 15%")).toBeInTheDocument();
   });
 
-  it("formats the price in the locale it is given, independent of the UI language", () => {
-    // `locale` is a prop, not read from i18n — an Arabic-language admin
-    // table still renders `locale="en"` numbers where it asks for them.
-    renderWithI18n(<ProductPrice product={plain} locale="ar" />);
+  it("renders the identical price string in Arabic as in English", () => {
+    // Deliberate: money is pinned to `$790` in both languages (see the
+    // comment above formatPrice). This asserts no Arabic-Indic digit ever
+    // reaches a price, which is what the previous `ar-EG` formatting did.
+    renderWithI18n(<ProductPrice product={plain} />, { locale: "ar" });
 
-    expect(screen.queryByText("$790")).not.toBeInTheDocument();
-    expect(screen.getByText(/[٠-٩]/)).toBeInTheDocument();
+    expect(screen.getByText("$790")).toBeInTheDocument();
+    expect(screen.queryByText(/[٠-٩]/)).not.toBeInTheDocument();
+  });
+
+  describe("spacing", () => {
+    // Regression test for a real bug: the undiscounted branch used to render
+    // a bare inline <span>, and vertical margins do not apply to inline
+    // boxes — so `className="mt-4"` from the product details page was
+    // silently dropped and the product name sat glued to its price, but
+    // only on products without a discount.
+    it("applies a passed className on an undiscounted product", () => {
+      const { container } = renderWithI18n(
+        <ProductPrice product={plain} className="mt-4" />,
+      );
+
+      const root = container.firstElementChild!;
+      expect(root).toHaveClass("mt-4");
+      expect(root).toHaveClass("inline-flex");
+    });
+
+    it("applies a passed className on a discounted product too", () => {
+      const { container } = renderWithI18n(
+        <ProductPrice product={discounted} className="mt-4" />,
+      );
+
+      expect(container.firstElementChild).toHaveClass("mt-4");
+    });
   });
 });

@@ -63,7 +63,7 @@ export default function ProductsTable({
             </div>
 
             <div className="hidden shrink-0 text-end sm:block">
-              <ProductPrice product={product} locale={locale} size="sm" />
+              <ProductPrice product={product} size="sm" />
               <p className="text-xs tabular-nums text-foreground/50">
                 {t("admin.products.stock", { count: product.stock })}
               </p>

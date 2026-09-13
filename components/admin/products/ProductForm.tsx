@@ -291,7 +291,7 @@ export default function ProductForm({ product }: { product?: Product }) {
               <p className="pb-6 text-sm text-foreground/60">
                 {t("admin.products.form.finalPrice")}:{" "}
                 <span className="font-semibold tabular-nums text-primary">
-                  {formatPrice(previewPrice, locale)}
+                  {formatPrice(previewPrice)}
                 </span>
               </p>
             )}

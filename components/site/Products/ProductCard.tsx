@@ -32,7 +32,7 @@ export default function ProductCard({ product }: ProductCardProps) {
     ? t("products.outOfStock")
     : pricing.hasDiscount
       ? t("products.discountBadge", {
-          percent: formatPercent(pricing.percentOff, locale),
+          percent: formatPercent(pricing.percentOff),
         })
       : undefined;
 

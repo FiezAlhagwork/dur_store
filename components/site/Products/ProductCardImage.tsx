@@ -67,7 +67,7 @@ export default function ProductCardImage({
       )}
 
       {badge && (
-        <span className="absolute top-3 inset-s-3 z-10 rounded-full bg-primary/90 px-3 py-1 text-[11px] font-medium uppercase tracking-wide text-second shadow-sm backdrop-blur-sm">
+        <span className="absolute top-3 start-3 z-10 rounded-full bg-primary/90 px-3 py-1 text-[11px] font-medium uppercase tracking-wide text-second shadow-sm backdrop-blur-sm">
           {badge}
         </span>
       )}

@@ -17,7 +17,6 @@ const PRICE_SIZES = {
 interface ProductPriceProps {
   /** Only the three fields the price depends on, so callers can pass anything product-shaped. */
   product: Pick<Product, "price" | "has_discount" | "final_price">;
-  locale: "ar" | "en";
   size?: keyof typeof PRICE_SIZES;
   /** The "15% off" pill. Off by default — it needs room the tighter rows don't have. */
   showBadge?: boolean;
@@ -35,7 +34,6 @@ interface ProductPriceProps {
  */
 export default function ProductPrice({
   product,
-  locale,
   size = "md",
   showBadge = false,
   className = "",
@@ -46,10 +44,19 @@ export default function ProductPrice({
 
   if (!pricing.hasDiscount) {
     return (
+      /*
+       * `inline-flex`, not a bare `inline` span, and this matters: vertical
+       * margins do not apply to a non-replaced inline box, so a caller
+       * passing `className="mt-3"` got silently nothing — the product
+       * details page's name sat glued to its price, but only on products
+       * without a discount, since the discounted branch below was already
+       * `inline-flex` and did honour it. Both branches now accept spacing
+       * the same way.
+       */
       <span
-        className={`font-semibold tabular-nums text-primary ${sizes.final} ${className}`}
+        className={`inline-flex font-semibold tabular-nums text-primary ${sizes.final} ${className}`}
       >
-        {formatPrice(pricing.finalPrice, locale)}
+        {formatPrice(pricing.finalPrice)}
       </span>
     );
   }
@@ -62,7 +69,7 @@ export default function ProductPrice({
      */
     <span className={`inline-flex flex-wrap items-baseline gap-x-2 gap-y-1 ${className}`}>
       <span className={`font-semibold tabular-nums text-primary ${sizes.final}`}>
-        {formatPrice(pricing.finalPrice, locale)}
+        {formatPrice(pricing.finalPrice)}
       </span>
 
       {/* `line-through` alone is decoration a screen reader may not convey, so
@@ -72,7 +79,7 @@ export default function ProductPrice({
         className={`tabular-nums text-foreground/40 ${sizes.original}`}
         aria-label={t("products.originalPrice")}
       >
-        {formatPrice(pricing.price, locale)}
+        {formatPrice(pricing.price)}
       </s>
 
       {showBadge && (
@@ -80,7 +87,7 @@ export default function ProductPrice({
           className={`rounded-full bg-red-500/10 px-2 py-0.5 font-semibold text-red-600 ${sizes.badge}`}
         >
           {t("products.discountBadge", {
-            percent: formatPercent(pricing.percentOff, locale),
+            percent: formatPercent(pricing.percentOff),
           })}
         </span>
       )}

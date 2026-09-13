@@ -2,16 +2,19 @@ import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import CategoryFilters from "@/components/site/Products/CategoryFilters";
+import type { CategoryFilterOption } from "@/types/product";
 
 /**
  * Takes already-localised `label`s from its parent, so no i18n setup is
  * needed here — plain `render` is enough.
  */
 describe("CategoryFilters", () => {
-  const options = [
+  // Annotated, not inferred: ids are `number | "all"`, and a bare literal
+  // array of mixed ids widens to `(string | number)[]`, which does not fit.
+  const options: CategoryFilterOption[] = [
     { id: "all", label: "الكل" },
-    { id: "rings", label: "خواتم" },
-    { id: "necklaces", label: "قلادات" },
+    { id: 1, label: "خواتم" },
+    { id: 2, label: "قلادات" },
   ];
 
   it("renders one button per option", () => {
@@ -31,7 +34,7 @@ describe("CategoryFilters", () => {
     );
 
     await user.click(screen.getByRole("button", { name: "قلادات" }));
-    expect(onChange).toHaveBeenCalledWith("necklaces");
+    expect(onChange).toHaveBeenCalledWith(2);
   });
 
   it("styles only the active option differently", () => {
@@ -39,7 +42,7 @@ describe("CategoryFilters", () => {
     // variants ever collapsed into one there'd be no visible indication of
     // what's being filtered — and no other signal to fall back on.
     render(
-      <CategoryFilters options={options} activeId="rings" onChange={vi.fn()} />,
+      <CategoryFilters options={options} activeId={1} onChange={vi.fn()} />,
     );
 
     const active = screen.getByRole("button", { name: "خواتم" });

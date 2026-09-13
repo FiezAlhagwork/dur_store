@@ -19,23 +19,38 @@ export function getLocalizedName(
   return locale === "ar" ? entity.name_ar : entity.name_en;
 }
 
+/*
+ * Money reads the same in both languages: `$790`, Latin digits, `$` leading.
+ *
+ * This used to format Arabic through `ar-EG`, which renders Arabic-Indic
+ * digits and moves the symbol after the number — `‏٧٩٠ US$`. Prices are the
+ * one thing on the page a customer scans and compares fastest, and mixed
+ * numeral systems make that harder, not more native; every Arabic-locale
+ * variant also spells the currency `US$` rather than `$` (checked against
+ * `ar-EG-u-nu-latn` and `narrowSymbol` — neither produces `$790`), so there
+ * is no Arabic locale that yields the wanted output. Hence `en-US` outright,
+ * for both languages, and hence neither function takes a `locale`: a
+ * parameter every caller computes and passes that changes nothing is the
+ * same silent lie as a prop that gets ignored.
+ *
+ * `formatDate`/`formatRelativeTime` below still branch on locale — month
+ * names genuinely must translate. Only the numerals are pinned.
+ */
+
 /**
  * Formats a product price for display.
  *
- * Arabic uses `ar-EG` so prices render with Arabic-Indic digits, matching the
- * rest of the Arabic UI.
- *
  * Fractions are shown only when the value actually has them. The catalogue is
  * priced in whole units, so this reads as `$790` for almost everything — but
- * discounts produce fractional results (15% off $790 is $671.50), and the
- * previous unconditional `maximumFractionDigits: 0` rounded that to `$672`.
+ * discounts produce fractional results (15% off $790 is $671.50), and an
+ * unconditional `maximumFractionDigits: 0` would round that to `$672`.
  * Quoting a customer a price they will not be charged is not a rounding
  * detail, so a fractional price prints both of its decimals.
  */
-export function formatPrice(value: number, locale: Locale): string {
+export function formatPrice(value: number): string {
   const fractionDigits = Number.isInteger(value) ? 0 : 2;
 
-  return new Intl.NumberFormat(locale === "ar" ? "ar-EG" : "en-US", {
+  return new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
     minimumFractionDigits: fractionDigits,
@@ -44,15 +59,13 @@ export function formatPrice(value: number, locale: Locale): string {
 }
 
 /**
- * A whole percentage, localised — "15%" / "١٥٪".
+ * A whole percentage — "15%".
  *
  * Takes the number as it reads (15, not 0.15) and divides internally, since
- * every caller here has a percentage already computed. Rendered through `Intl`
- * rather than string-concatenating a `%`, so Arabic gets its own digits and
- * its own percent sign, and the sign lands on the correct side of the number.
+ * every caller here has a percentage already computed.
  */
-export function formatPercent(percent: number, locale: Locale): string {
-  return new Intl.NumberFormat(locale === "ar" ? "ar-EG" : "en-US", {
+export function formatPercent(percent: number): string {
+  return new Intl.NumberFormat("en-US", {
     style: "percent",
     maximumFractionDigits: 0,
   }).format(percent / 100);

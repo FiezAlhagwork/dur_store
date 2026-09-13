@@ -70,7 +70,7 @@ export default function AdminDrawer({
         aria-modal={isOpen}
         aria-label={t("admin.drawer.label")}
         className={[
-          "absolute inset-y-0 inset-s-0 flex w-72 max-w-[85%] flex-col bg-background shadow-2xl",
+          "absolute inset-y-0 start-0 flex w-72 max-w-[85%] flex-col bg-background shadow-2xl",
           "transition-transform duration-300 ease-out will-change-transform",
           isOpen ? "translate-x-0" : closedTransform,
         ].join(" ")}

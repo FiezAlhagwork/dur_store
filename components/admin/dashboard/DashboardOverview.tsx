@@ -57,8 +57,7 @@ function OverviewSkeleton({ label }: { label: string }) {
 }
 
 export default function DashboardOverview() {
-  const { t, i18n } = useTranslation("common");
-  const locale = i18n.language === "ar" ? "ar" : "en";
+  const { t } = useTranslation("common");
   const { data, error, isError, isPending, refetch } = useDashboardStats();
 
   if (isError) {
@@ -158,7 +157,7 @@ export default function DashboardOverview() {
           <ProductMiniList
             products={data.latest_products}
             renderMeta={(product) => (
-              <ProductPrice product={product} locale={locale} size="sm" />
+              <ProductPrice product={product} size="sm" />
             )}
           />
         </DashboardSection>

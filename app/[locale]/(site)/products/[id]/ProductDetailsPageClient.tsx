@@ -3,10 +3,11 @@
 import { use } from "react";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
-import { Gem, Weight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useProduct, useProducts } from "@/hooks/useProducts";
 import type { Product } from "@/types/product";
 import ProductGallery from "@/components/site/Products/ProductGallery";
+import ProductSpecs from "@/components/site/Products/ProductSpecs";
 import ProductCard from "@/components/site/Products/ProductCard";
 import Button from "@/components/ui/Button";
 import ProductPrice from "@/components/ui/ProductPrice";
@@ -61,7 +62,10 @@ export default function ProductDetailsPageClient({
 
   if (isPending) {
     return (
-      <main className="site-container py-10 md:py-26" data-navbar-theme="dark">
+      <main
+        className="site-container pb-16 pt-20 md:pb-26 md:pt-30"
+        data-navbar-theme="dark"
+      >
         <SkeletonGroup
           label={t("common.loading")}
           className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-14 xl:gap-20"
@@ -85,7 +89,7 @@ export default function ProductDetailsPageClient({
     if (error.status === 404) {
       return (
         <main
-          className="site-container flex min-h-[50vh] flex-col items-center justify-center gap-4 py-24 text-center"
+          className="site-container flex min-h-[50vh] flex-col items-center justify-center gap-4 pb-16 pt-20 text-center md:pt-30"
           data-navbar-theme="dark"
         >
           <p className="text-foreground/60">{t("productDetail.notFound")}</p>
@@ -98,7 +102,7 @@ export default function ProductDetailsPageClient({
 
     return (
       <main
-        className="site-container flex min-h-[50vh] flex-col items-center justify-center gap-4 py-24 text-center"
+        className="site-container flex min-h-[50vh] flex-col items-center justify-center gap-4 pb-16 pt-20 text-center md:pt-30"
         data-navbar-theme="dark"
       >
         <p className="text-foreground/60">{t("products.error.description")}</p>
@@ -121,7 +125,16 @@ export default function ProductDetailsPageClient({
 
   return (
     <main
-      className="relative overflow-hidden  py-10 md:py-26"
+      /*
+       * `pt-20` is load-bearing, not styling. The navbar is `fixed ... z-50`
+       * and ~60px tall, contributes no layout height, and is fully
+       * transparent at the top of the page — so the old `py-10` (40px) left
+       * the back link sitting *inside* the header's box: visible through it,
+       * but every tap went to the header instead. Matches the products
+       * listing page's own `pt-20 md:pt-30`, which is the convention here
+       * since `(site)/layout.tsx` deliberately adds no global spacer.
+       */
+      className="relative overflow-hidden pb-16 pt-20 md:pb-26 md:pt-30"
       data-navbar-theme="dark"
     >
       <div className="site-container">
@@ -160,51 +173,34 @@ export default function ProductDetailsPageClient({
                 {getLocalizedName(product.category, locale)}
               </Link>
             )}
-            <p className="mt-1 text-xs font-medium uppercase tracking-[0.16em] text-primary/50">
-              {t("products.karat", { karat: product.karat })}
-            </p>
-            <h1 className="mt-2 font-serif text-2xl font-bold text-primary sm:text-3xl md:text-4xl">
+
+            {/*
+              The vertical rhythm below is deliberate and increases with the
+              weight of what it separates: the name gets room to land under
+              the eyebrow, and the price gets more still, because those two
+              were previously 8px and 12px apart under a `text-4xl` serif
+              heading — the tightest gaps on the page sitting under its
+              largest type. Karat is no longer a cramped line here at all;
+              it reads as a real spec in ProductSpecs below.
+            */}
+            <h1 className="mt-3 font-serif text-2xl font-bold text-primary sm:text-3xl md:text-4xl">
               {name}
             </h1>
-            <ProductPrice
-              product={product}
-              locale={locale}
-              size="lg"
-              showBadge
-              className="mt-3"
-            />
+            <ProductPrice product={product} size="lg" showBadge className="mt-4" />
 
-            <p className="mt-6 max-w-prose wrap-break-word text-sm leading-relaxed text-foreground/70 sm:text-base">
-              {description}
-            </p>
+            {/* Guarded: `description` is `string | null`, and an unguarded
+                empty <p> still consumed its own top margin — a blank gap
+                with nothing in it. */}
+            {description && (
+              <p className="mt-6 max-w-prose wrap-break-word text-sm leading-relaxed text-foreground/70 sm:text-base">
+                {description}
+              </p>
+            )}
 
-            <div className="mt-6 flex flex-wrap gap-3">
-              {/* `gold_weight` is `number | null` on real data — unlike the
-                  fixture data this page used to run on, where every product
-                  had one. Guarded the same way `gemstone_type` already is
-                  below, rather than printing "Gold Weight: g" for a piece
-                  with none recorded. */}
-              {product.gold_weight != null && (
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/5 px-3 py-1.5 text-xs font-medium text-primary sm:text-sm">
-                  <Weight size={14} strokeWidth={1.75} />
-                  {t("productDetail.goldWeight")}: {product.gold_weight}g
-                </span>
-              )}
-              {product.gemstone_type && (
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/5 px-3 py-1.5 text-xs font-medium text-primary sm:text-sm">
-                  <Gem size={14} strokeWidth={1.75} />
-                  {t(`productDetail.gemstones.${product.gemstone_type}`, {
-                    defaultValue: product.gemstone_type,
-                  })}
-                  {product.gemstone_carat
-                    ? ` · ${product.gemstone_carat} ct`
-                    : ""}
-                </span>
-              )}
-            </div>
+            <ProductSpecs product={product} className="mt-8" />
 
             {!isOutOfStock && product.stock <= 5 && (
-              <p className="mt-4 text-sm font-medium text-red-600">
+              <p className="mt-6 text-sm font-medium text-red-600">
                 {t("productDetail.lowStock", { count: product.stock })}
               </p>
             )}
@@ -222,7 +218,9 @@ export default function ProductDetailsPageClient({
                   {t("products.orderWhatsapp")}
                 </Button>
               ) : (
-                <Button variant="primary" size="md" className="gap-2">
+                /* `disabled`: it used to render as a live-looking primary
+                   CTA that did nothing at all when tapped. */
+                <Button variant="primary" size="md" className="gap-2" disabled>
                   {t("products.outOfStock")}
                 </Button>
               )}
