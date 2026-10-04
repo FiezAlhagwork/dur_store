@@ -1,8 +1,5 @@
-import { AboutStat } from "@/types";
 import {
   Gem,
-  Users2,
-  Award,
   PenTool,
   Feather,
   Layers,
@@ -13,15 +10,11 @@ import {
 } from "lucide-react";
 import InstagramIcon from "@/components/shared/InstagramIcon";
 import FacebookIcon from "@/components/shared/FacebookIcon";
+import SnapchatIcon from "@/components/shared/SnapchatIcon";
+import TikTokIcon from "@/components/shared/TikTokIcon";
 import WhatsAppIcon from "@/components/shared/WhatsAppIcon";
 import type { Locale } from "@/i18n/config";
 import type { SiteSettings } from "@/types/settings";
-
-export const ABOUT_STATS: AboutStat[] = [
-  { icon: Gem, value: "500+", labelKey: "about.stats.products" },
-  { icon: Users2, value: "1000+", labelKey: "about.stats.customers" },
-  { icon: Award, value: "10+", labelKey: "about.stats.years" },
-];
 
 export const WHY_CHOOSE_US = [
   {
@@ -166,6 +159,16 @@ export function getSocialLinks(settings: SiteSettings) {
       label: "Facebook",
     },
     {
+      icon: TikTokIcon,
+      href: settings.social.tiktok_url,
+      label: "TikTok",
+    },
+    {
+      icon: SnapchatIcon,
+      href: settings.social.snapchat_url,
+      label: "Snapchat",
+    },
+    {
       icon: WhatsAppIcon,
       // No `whatsapp_url` field on `settings.social` by design — the number
       // lives once, on `settings.brand`, and every WhatsApp link in the app
@@ -174,5 +177,7 @@ export function getSocialLinks(settings: SiteSettings) {
       href: `https://wa.me/${settings.brand.whatsapp_number}`,
       label: "WhatsApp",
     },
-  ];
+    // Snapchat and TikTok are optional settings — an unset one is "" and is
+    // left off rather than rendered as an icon linking nowhere.
+  ].filter((link) => link.href);
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import { useCategories } from "@/hooks/useCategories";
 import Reveal from "@/components/shared/Reveal";
@@ -23,9 +24,25 @@ export default function Categories() {
 
   return (
     <div className="relative overflow-hidden  bg-second">
+      <Image
+        src="/eger.webp"
+        alt=""
+        aria-hidden="true"
+        width={200}
+        height={200}
+        className="pointer-events-none absolute -left-9 -top-11 w-56 select-none sm:w-64 md:-left-12 md:-top-22 md:w-150"
+      />
+      <Image
+        src="/eger.webp"
+        alt=""
+        aria-hidden="true"
+        width={200}
+        height={200}
+        className="pointer-events-none absolute -bottom-10 -right-19 w-70  rotate-180 select-none  sm:w-60 md:-bottom-12 md:-right-22 md:w-90"
+      />
 
       <section
-        className="site-container  py-16 md:py-24"
+        className="relative site-container  py-16 md:py-24"
         id="categories"
         data-navbar-theme="dark"
       >

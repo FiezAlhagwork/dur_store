@@ -51,13 +51,10 @@ export default function ContactCTA() {
       />
       <div className="site-container">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <span className="text-sm font-bold uppercase tracking-wider text-primary xl:text-base">
-            {t("contact.eyebrow")}
-          </span>
-          <h2 className="mt-3 font-serif text-3xl font-bold text-primary md:text-4xl xl:text-5xl">
+          <h2 className="font-serif text-3xl font-bold text-primary md:text-4xl xl:text-5xl">
             {t("contact.title")}
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-sm text-foreground/70 sm:text-base">
+          <p className="mx-auto mt-4 max-w-xl whitespace-pre-line text-sm text-foreground/70 sm:text-base">
             {t("contact.subtitle")}
           </p>
         </Reveal>

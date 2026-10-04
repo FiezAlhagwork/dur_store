@@ -30,6 +30,10 @@ export interface SiteSettings {
   social: {
     instagram_url: string;
     facebook_url: string;
+    /** Optional — `""` when unset, and the icon is then left off the site. */
+    snapchat_url: string;
+    /** Optional — `""` when unset, and the icon is then left off the site. */
+    tiktok_url: string;
     // No WhatsApp field: that link is built from `brand.whatsapp_number`.
   };
 

@@ -15,13 +15,7 @@
   "about": {
     "eyebrow": "About Us",
     "title": "The Dur Story",
-    "description": "DUR is a luxury jewelry brand offering gold and diamond pieces with contemporary designs that blend fine craftsmanship, quiet luxury, and personal identity. We believe jewelry isn't just an accessory — it's an extension of a woman's taste, memory, and presence.",
-    "imageAlt": "Dur jewelry workshop",
-    "stats": {
-      "products": "Products",
-      "customers": "Happy customers",
-      "years": "Years of experience"
-    }
+    "description": "DUR is a luxury jewelry brand offering gold and diamond pieces with contemporary designs that blend fine craftsmanship, quiet luxury, and personal identity. We believe jewelry isn't just an accessory — it's an extension of a woman's taste, memory, and presence."
   },
   "whyUs": {
     "eyebrow": "Why Dur",
@@ -48,9 +42,9 @@
     }
   },
   "categories": {
-    "eyebrow": "Browse",
-    "title": "Shop by Category",
-    "subtitle": "Find the piece that matches your style, from rings to earrings."
+    "eyebrow": "The DUR Collection",
+    "title": "Details That Reflect You",
+    "subtitle": "Discover jewelry with an Arabian soul and contemporary elegance, and find the piece that speaks to you."
   },
   "reviews": {
     "eyebrow": "Reviews",
@@ -112,9 +106,8 @@
     }
   },
   "contact": {
-    "eyebrow": "Get in Touch",
-    "title": "Contact Us",
-    "subtitle": "Have a question or a custom piece in mind? Send us a message and we'll reply on WhatsApp.",
+    "title": "Get in Touch",
+    "subtitle": "Have a question about DUR jewelry or an idea for a bespoke design? We’d love to help you find your piece or create it with you.\nSend us a message, and we’ll get in touch via WhatsApp.",
     "info": {
       "phone": "Phone",
       "email": "Email",
@@ -184,7 +177,7 @@
     }
   },
   "footer": {
-    "tagline": "Timeless gold and diamond jewelry, designed with quiet luxury in mind.",
+    "tagline": "Rooted in heritage, we create jewelry that tells your story.",
     "quickLinks": "Quick Links",
     "getInTouch": "Get in Touch",
     "privacy": "Privacy Policy",
@@ -497,6 +490,8 @@
         "title": "Social links",
         "instagram": "Instagram",
         "facebook": "Facebook",
+        "snapchat": "Snapchat",
+        "tiktok": "TikTok",
         "whatsappNote": "The WhatsApp link is built from the number in the Brand section below."
       },
       "brand": {

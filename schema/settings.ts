@@ -13,6 +13,13 @@ import type { TFunction } from "i18next";
 /** Trimmed, and required: an empty contact line is worse than a stale one. */
 const requiredText = (message: string) => z.string().trim().min(1, message);
 
+/** Trimmed, and either empty (not set) or a valid URL. */
+const optionalUrl = (message: string) =>
+  z
+    .string()
+    .trim()
+    .refine((value) => value === "" || z.string().url().safeParse(value).success, message);
+
 export const getBrandSchema = (t: TFunction) =>
   z.object({
     site_url: z
@@ -46,6 +53,8 @@ export const getSocialSchema = (t: TFunction) =>
   z.object({
     instagram_url: z.string().trim().url(t("admin.site.errors.url")),
     facebook_url: z.string().trim().url(t("admin.site.errors.url")),
+    snapchat_url: optionalUrl(t("admin.site.errors.url")),
+    tiktok_url: optionalUrl(t("admin.site.errors.url")),
   });
 
 export const getHeroTextSchema = (t: TFunction) => {

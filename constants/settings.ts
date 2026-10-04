@@ -30,6 +30,9 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   social: {
     instagram_url: "https://instagram.com/dur.jewelry",
     facebook_url: "https://facebook.com/dur.jewelry",
+    // No fallback account: empty means "not set", and getSocialLinks drops it.
+    snapchat_url: "",
+    tiktok_url: "",
   },
 
   home_hero: {

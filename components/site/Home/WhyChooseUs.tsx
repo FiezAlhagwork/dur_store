@@ -19,7 +19,7 @@ export default async function WhyChooseUs({ locale }: { locale: string }) {
         aria-hidden="true"
         width={200}
         height={200}
-        className="pointer-events-none absolute -left-13 -top-11 w-60 select-none sm:w-90 md:-left-12 md:-top-22 md:w-110"
+        className="pointer-events-none absolute -left-13 -top-11 w-44 select-none sm:w-64 md:-left-12 md:-top-22 md:w-110"
       />
       <Image
         src="/eger.webp"

@@ -10,7 +10,12 @@ import Input from "@/components/ui/Input";
 import { getSocialSchema, type SocialFormValues } from "@/schema/settings";
 import type { SiteSettings } from "@/types/settings";
 
-const FIELDS = ["instagram_url", "facebook_url"] as const;
+const FIELDS = [
+  "instagram_url",
+  "facebook_url",
+  "snapchat_url",
+  "tiktok_url",
+] as const;
 
 export default function SocialForm({
   social,
@@ -64,6 +69,20 @@ export default function SocialForm({
           placeholder="https://facebook.com/…"
           error={errors.facebook_url?.message}
           {...register("facebook_url")}
+        />
+        <Input
+          dir="ltr"
+          label={t("admin.site.social.snapchat")}
+          placeholder="https://snapchat.com/add/…"
+          error={errors.snapchat_url?.message}
+          {...register("snapchat_url")}
+        />
+        <Input
+          dir="ltr"
+          label={t("admin.site.social.tiktok")}
+          placeholder="https://tiktok.com/@…"
+          error={errors.tiktok_url?.message}
+          {...register("tiktok_url")}
         />
       </div>
 

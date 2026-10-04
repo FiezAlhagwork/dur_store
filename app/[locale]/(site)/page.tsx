@@ -31,8 +31,8 @@ export default async function Home({
   return (
     <>
       <Hero />
-      <AboutUs />
       <Categories />
+      <AboutUs />
       <WhyChooseUs locale={locale} />
       <Reviews />
       <FAQ />

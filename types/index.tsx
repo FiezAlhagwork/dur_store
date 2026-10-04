@@ -1,6 +1,6 @@
 import { Locale } from "@/i18n/config";
 import type { Product } from "@/types/product";
-import { Gem, LucideIcon } from "lucide-react";
+import { LucideIcon } from "lucide-react";
 import { TargetAndTransition } from "motion";
 import type { TextareaHTMLAttributes } from "react";
 
@@ -10,12 +10,6 @@ import type {
   ReactNode,
   SelectHTMLAttributes,
 } from "react";
-
-export type AboutStat = {
-  icon: typeof Gem;
-  value: string;
-  labelKey: string;
-};
 
 export interface CountUpProps {
   value: string;
