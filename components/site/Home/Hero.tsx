@@ -139,7 +139,7 @@ export default function Hero() {
                 delay: 0.14,
                 ease: curveEase,
               }}
-              className="mt-8 text-[15px] text-second font-serif tracking-[0.04em] md:text-[1.2rem] lg:text-[1.05rem]"
+              className="mt-8 text-[18px] font-bold text-second font-serif tracking-[0.04em] md:text-[1.35rem] lg:text-[1.2rem]"
             >
               {description}
             </motion.p>
